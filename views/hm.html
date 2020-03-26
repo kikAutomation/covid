@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial;
+  color: white;
+}
+
+.split {
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+
+}
+
+
+.top {
+left:0;
+  top: 0;
+  background-color: #007E33;
+}
+
+.bottom {
+left:0;
+  top: 50%;
+  background-color: #FF8800;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<div class="split top">
+  <div class="centered">
+    <img src="gs://project-covid-19-272207.appspot.com/help.png" alt="help">
+   
+    <p>Fosssr Help</p>
+  </div>
+</div>
+
+<div class="split bottom">
+  <div class="centered">
+    <img src="/68-682450_volunteer-icon-png.png" alt="Volunteer">
+   <p>For Volunteer(s).</p>
+  </div>
+</div>
+     
+</body>
+</html> 

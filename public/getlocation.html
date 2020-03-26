@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+body{
+
+}
+.menu {
+  float: left;
+  width: 20%;
+}
+.menuitem {
+  padding: 8px;
+  margin-top: 7px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.main {
+  float: left;
+  width: 60%;
+  padding: 0 20px;
+  overflow: hidden;
+}
+.right {
+  background-color: lightblue;
+  float: left;
+  width: 20%;
+  padding: 10px 15px;
+  margin-top: 7px;
+}
+
+@media only screen and (max-width:800px) {
+  /* For tablets: */
+  .main {
+    width: 80%;
+    padding: 0;
+  }
+  .right {
+    width: 100%;
+  }
+}
+@media only screen and (max-width:500px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+</style>
+<style>
+#div1 {
+  font-size:48px;
+}
+.pinkBg {
+    background-color: #232d67!important;
+    background-image: linear-gradient(90deg, #232d67, #232d67);
+}
+
+.intro-banner-vdo-play-btn i{
+    line-height:56px;
+    font-size:30px
+}
+.intro-banner-vdo-play-btn .ripple{
+    position:absolute;
+    width:60px;
+    height:60px;
+    z-index:-1;
+   
+    opacity:0;
+  
+    border-radius:100px;
+    -webkit-animation:ripple 1.8s infinite;
+    animation:ripple 1.8s infinite
+}
+
+@-webkit-keyframes ripple{
+    0%{
+        opacity:1;
+        -webkit-transform:scale(0);
+        transform:scale(0)
+    }
+    100%{
+        opacity:0;
+        -webkit-transform:scale(1);
+        transform:scale(1)
+    }
+}
+@keyframes ripple{
+    0%{
+        opacity:1;
+        -webkit-transform:scale(0);
+        transform:scale(0)
+    }
+    100%{
+        opacity:0;
+        -webkit-transform:scale(1);
+        transform:scale(1)
+    }
+}
+.intro-banner-vdo-play-btn .ripple:nth-child(2){
+    animation-delay:.3s;
+    -webkit-animation-delay:.3s
+}
+.intro-banner-vdo-play-btn .ripple:nth-child(3){
+    animation-delay:.6s;
+    -webkit-animation-delay:.6s
+}
+</style>
+<style>
+.button {
+height:60px;
+    width:100%;
+    display:block;
+    
+}
+</style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="font-family:Verdana;" onload="getLocation()">
+
+<div style="padding:15px;">
+  
+ 
+
+<div class="container" id>
+	<div class="row">
+		<div class="container">
+	<div class="row">
+    <h3>We are locating you....</h3>
+	<a href="#" class="intro-banner-vdo-play-btn pinkBg" target="_blank">
+
+
+<span class="ripple pinkBg"></span>
+<span class="ripple pinkBg"></span>
+<span class="ripple pinkBg"></span>
+</a>
+	</div>
+</div>
+
+</div>
+</div>
+<br><br>
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+ 
+}
+</script>
+<div class="container">
+	<div class="row">
+		 <form class="form-horizontal">
+            <fieldset>
+      
+         
+                <!-- full-name input-->
+                <div class="control-group">
+                    <label class="control-label">Name</label>
+                    <div class="controls">
+                        <input id="full-name" name="full-name" type="text" placeholder="full name"
+                        class="input-xlarge">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <!-- address-line1 input-->
+                <div class="control-group">
+                    <label class="control-label">Place</label>
+                    <div class="controls">
+                        <input id="address-line1" name="address-line1" type="text" placeholder="Nearest Land mark"
+                        class="input-xlarge">
+                      
+                    </div>
+                </div>
+               
+                <!-- city input-->
+                <div class="control-group">
+                    <label class="control-label">City / Town / Village</label>
+                    <div class="controls">
+                        <input id="city" name="city" type="text" placeholder="city" class="input-xlarge">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+               
+                <!-- postal-code input-->
+                <div class="control-group">
+                    <label class="control-label">Phone</label>
+                    <div class="controls">
+                        <input id="postal-code" name="postal-code" type="text" placeholder="mobile"
+                        class="input-xlarge">
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+               
+            </fieldset>
+              <button type="button" class="button btn btn-primary"><h4>Next</h4></button>
+        </form>
+	</div>
+</div>
+</body>
+</html>
