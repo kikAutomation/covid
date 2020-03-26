@@ -23,6 +23,10 @@ var path = require('path');
 
 // Use the built-in express middleware for serving static files from './public'
 app.use(express.static('public'));
+app.get('/volunteer_login', (req, res) => {
+ // res.render('hm.pug');
+res.sendFile(path.join(__dirname + '/volunteer_login.html'));
+});
 
 app.get('/', (req, res) => {
  // res.render('hm.pug');

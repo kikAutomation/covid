@@ -228,15 +228,12 @@ left:50%;
  <div class="container">
 	<div class="row">
 		 <form class="form-horizontal">
-          
-      
-         
                 <!-- full-name input-->
                 <div class="control-group">
                     <label class="control-label">Name</label>
                     <div class="controls">
                         <input id="full-name" name="full-name" type="text" placeholder="full name"
-                        class="form-control">
+                        class="form-control" required>
                         <p class="help-block"></p>
                     </div>
                 </div>
@@ -245,7 +242,7 @@ left:50%;
                     <label class="control-label">Place</label>
                     <div class="controls">
                         <input id="address-line1" name="address-line1" type="text" placeholder="Nearest Land mark"
-                        class="form-control">
+                        class="form-control" required>
                       
                     </div>
                 </div>
@@ -254,7 +251,7 @@ left:50%;
                 <div class="control-group">
                     <label class="control-label">City / Town / Village</label>
                     <div class="controls">
-                        <input id="city" name="city" type="text" placeholder="city" class="form-control">
+                        <input id="city" name="city" type="text" placeholder="city" class="form-control" required>
                         <p class="help-block"></p>
                     </div>
                 </div>
@@ -268,7 +265,7 @@ left:50%;
                         <p class="help-block"></p>
                     </div>
                 </div>
-                <div id="post" class="button button-1" >Find Help</div>
+                <input id="post" type="submit" class="button button-1" value="Find Help" style="text-color:white;"/>
          
              
         </form>
@@ -277,11 +274,11 @@ left:50%;
 </div>
 
 <div >
-  <div class="container">
+  <div class="container"><a href="/volunteer_login">
   <div class="chip">
   <img src="covid-19_icons_mask.png" alt="Person" width="96" height="96">
   Volunteer Login
-</div>
+</div></a>
 </div>
 </div>
 </div>
@@ -324,8 +321,8 @@ function help() {
 
 <script>
 $(document).ready(function(){
-  $("#post").click(function(){
-    $("#home").fadeOut(1000);
+  $("form").submit(function(){
+    $("#home").fadeOut(500);
   });
 });
 </script>
