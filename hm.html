@@ -4,237 +4,106 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Acsia</title>
-    <link rel="stylesheet" href="card_layout.css" />
+    <!-- Icons -->
+    <link href="assets/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="assets/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="dashboard.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 </head>
 
 <body>
-    <div id="loading_ripple" style="display: none">
-        <a href="#" class="intro-banner-vdo-play-btn pinkBg" target="_blank">
-            <span class="ripple pinkBg"></span>
-            <span class="ripple pinkBg"></span>
-            <span class="ripple pinkBg"></span>
-        </a>
-    </div>
-
-    <div id="home" style="max-width:700px;margin: auto;">
-        <p style="text-align:left;">
-            <h4 style="text-align: left; display: inline;"><i class="fas fa-shield-virus"></i> &nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
-            </h4>
-            <span style="float:right;">
+   
+    <div id="home">
+        <div style="max-width:700px;margin: auto; padding: 2%;">
+            <p style="text-align:left;">
+                <h4 style="text-align: left; display: inline;"><i class="fas fa-shield-virus"></i> &nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
+                </h4>
+                <span style="float:right;">
         <h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
             class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
             class="fas fa-handshake-slash"></i></h4>
       </span>
-        </p>
-		
-        <div id="Request_Entry_Card" class="content1 card1">
-           <div class="container">
-	<div class="row">
-		 <form class="form-horizontal" action="/to_cart" method="post">
-                <!-- full-name input-->
-                <div class="control-group">
-                    <label class="control-label">Name</label>
-                    <div class="controls">
-                        <input id="full-name" name="full-name" type="text" placeholder="full name"
-                        class="form-control" required>
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <!-- address-line1 input-->
-                <div class="control-group">
-                    <label class="control-label">Place</label>
-                    <div class="controls">
-                        <input id="address-line1" name="address-line1" type="text" placeholder="Nearest Land mark"
-                        class="form-control" required>
-                      
-                    </div>
-                </div>
-               
-                <!-- city input-->
-                <div class="control-group">
-                    <label class="control-label">City / Town / Village</label>
-                    <div class="controls">
-                        <input id="city" name="city" type="text" placeholder="city" class="form-control" required>
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-               
-                <!-- postal-code input-->
-                <div >
-                    <label class="control-label">Phone</label>
-                    <div class="controls">
-                       <input type="tel" id="phone" name="phone" placeholder="mobile" pattern="[0-9]{4}[0-9]{3}[0-9]{3}" required
-                        class="form-control" >
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <input id="post" type="submit" class="button button-1" value="Find Help" style="text-color:white;"/>
-         
-             
-        </form>
-	</div>
-</div>
+            </p>
         </div>
-
-        <div>
-            <div id="Track_Order_Card" class="content1 card1" style="display: none;">
-                <div class="container">
-                    <div class="row">
-                        <form class="form-horizontal">
-
-                            <!-- track-id input-->
-                            <div>
-                                <label class="control-label">Request ID</label>
-                                <div class="controls">
-                                    <input type="text" id="request_id" name="request id" placeholder="VLMBL-123423" required class="form-control">
-                                    <p class="help-block"></p>
+        <div class="container" style="margin: none; width: 100%;">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <form role="form" action="/to_cart" method="post" id="ml" >
+				<span id="help-block">Log In</span>
+				<br>
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Phone Number" type="tel" id="phone" name="from" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="track" class="button button-1">Track Request</div>
-
-                        </form>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Password" type="password" id="pass" name="pass" required>
+                                    </div>
+                                </div>
+                                <div class="custom-control custom-control-alternative custom-checkbox">
+                                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                                    <label class="custom-control-label" for=" customCheckLogin">
+                                    <span class="text-muted">Remember me</span>
+                                </label>
+                                </div>
+                                <div class="text-center">
+                                    <button id="login" onclick="post()" type="button" class="btn btn-primary my-4">Log In</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row mt-3 ">
+                        <div class="col-6 ">
+                            <a href="sign_up " class="text-default "><small>Create new account</small></a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div id="Track_Order_Result_Card" class="content1 card1" style="display: none;">
-                <div class="container">
-                    <div class="row">
-
-                    </div>
-                </div>
-            </div>
         </div>
-
-        <div id="Medicalrep_Login_Card" class="content1 card1" style="display: none;">
-            <div class="container">
-                <div class="row">
-                    <form class="form-horizontal">
-
-                        <!-- user-name input-->
-                        <div class="control-group">
-                            <label class="control-label">User Name</label>
-                            <div class="controls">
-                                <input id="med_username" name="user-name" type="text" placeholder="Full Name" class="form-control">
-                                <p class="help-block"></p>
-                            </div>
-                        </div>
-
-                        <!-- password input-->
-                        <div class="control-group">
-                            <label class="control-label">Password</label>
-                            <div class="controls">
-                                <input id="med_password" name="password" type="password" placeholder="Password" minlength="8" required class="form-control">
-                            </div>
-                        </div>
-
-                        <div id="login" class="button button-1">Login</div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <div class="container" style="width: 100%">
-                <div class="chip" onclick="toggleCard('Request_Entry_Card')">
-                    <img src="covid-19_icons_mask.png" alt="Person" width="33.3%" height="96"> Start Shopping
-                </div>
-                <div class="chip" onclick="toggleCard('Track_Order_Card')">
-                    <img src="covid-19_icons_mask.png" alt="Person" width="33.3%" height="96"> Track your request
-                </div>
-                <div class="chip" onclick="toggleCard('Medicalrep_Login_Card')">
-                    <img src="covid-19_icons_mask.png" alt="Person" width="33.3%" height="96"> Medical Rep Login
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        }
-    </script>
-    <script>
-        var x = document.getElementById("demo");
-
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function showPosition(position) {}
-    </script>
-    <script>
-        function toggleCard(cardElementName) {
-            var volunteerLoginCard = document.getElementById("Request_Entry_Card");
-            var trackRequestCard = document.getElementById("Track_Order_Card");
-            var medrepLoginCard = document.getElementById("Medicalrep_Login_Card");
-
-            switch (cardElementName) {
-                case "Request_Entry_Card":
-                    trackRequestCard.style.display = "none";
-                    medrepLoginCard.style.display = "none";
-                    volunteerLoginCard.style.display = "block";
-                    break;
-                case "Track_Order_Card":
-                    volunteerLoginCard.style.display = "none";
-                    medrepLoginCard.style.display = "none";
-                    trackRequestCard.style.display = "block";
-                    break;
-                case "Medicalrep_Login_Card":
-                    trackRequestCard.style.display = "none";
-                    volunteerLoginCard.style.display = "none";
-                    medrepLoginCard.style.display = "block";
-                    break;
-            }
-        }
-
-        function help() {
-            var x = document.getElementById("home");
-        }
-
+<script>
+	function post(){
+		var p=$("#pass").val();
+		var t=$("#phone").val();
+		if((p != "") && (t != "")){
+		$.post("/login", {from: t,pass : p},function(data, status, jqXHR){
+     			 $("#ml").submit();                
+                  
+    			}).fail(function(jqXHR, textStatus, errorThrown){
+    		if(jqXHR.status == 404) {
+			error("<h4 style=&#8220;color=red;&#8220;>Please enter valid credential<h4>");
+   		}
+		});
+		
+		}else{
+			error("<h4 style=&#8220;color=red;&#8220;>Please fill both fields<h4>");
+		}
+	}
+    function error(val){
+document.getElementById('help-block').innerHTML=val;   	
+    }
+function help() {
+    var x = document.getElementById("home");
+}
         function loadPage(page) {
+
             window.location.href = page;
         }
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $("#shopping").click(function() {
-                $("#home").fadeOut(500);
-                $("#loading_ripple").fadeToggle(1000);
-                loadPage("/start_shopping")
-            });
-            $("#track").click(function() {
-                $("#home").fadeOut(500);
-                $("#loading_ripple").fadeToggle(1000);
-            });
-            $("#login").click(function() {
-                $("#home").fadeOut(500);
-                $("#loading_ripple").fadeToggle(1000);
-                loadPage("/volunteer_login")
-            });
-        });
-    </script>
+    <!--   Core   -->
+    <script src="assets/plugins/jquery/dist/jquery.min.js "></script>
+    <script src="assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
 </body>
 
 </html>

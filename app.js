@@ -46,12 +46,31 @@ var path = require('path');
 app.use(express.urlencoded());
 // Use the built-in express middleware for serving static files from './public'
 app.use(express.static('public'));
+app.get('/sign_up', (req, res) => {
+
+    res.sendFile(path.join(__dirname + '/sign_up.html'));
+});
 app.get('/volunteer_login', (req, res) => {
 
     res.sendFile(path.join(__dirname + '/volunteer_login.html'));
 });
+app.post('/login', (req, res) => {
+console.log('lllllllll'+req.body.from);
+    if (req.body.from != "") {
+        // res.sendFile(path.join(__dirname + '/cart.html'));
+ 	firebase.database().ref(req.body.from + '/det').once('value', function(snapshot) {
+            	if(snapshot.child("pass").val()==req.body.pass){
+       			res.status(200).send('ok').end();
+		}else{
+			res.status(404).send('Unautharised').end();
+		}
+	});
+    	} else {
+        	res.status(404).send('Unautharised').end();
+    	}
+});
 app.post('/to_cart', (req, res) => {
-    if (req.body.phone != "") {
+    if (req.body.from != "") {
         // res.sendFile(path.join(__dirname + '/cart.html'));
 
         fs.readFile(path.join(__dirname + '/shopping_cart.html'), function(err, data) {

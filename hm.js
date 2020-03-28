@@ -51,9 +51,7 @@ function toggleCard(cardElementName) {
     }
 }
 
-function help() {
-    var x = document.getElementById("home");
-}
+
 
 $(document).ready(function () {
     $("#post").click(function () {
