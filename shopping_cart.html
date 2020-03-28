@@ -1,3 +1,4 @@
+
 <html lang="en">
 
 <head>
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="shopping_site.css" />
     <link rel="stylesheet" href="card_layout.css" />
 	<link rel="stylesheet" href="popup.css" />
+	<link rel="stylesheet" href="loader.css" />
     <title>Basket</title>
 	 <style>
 .card1 {
@@ -46,9 +48,58 @@ td{
 text-align: centre;
 }
 </style>
-	<script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-     	
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<style>
+        .spin_d { 
+      
+      color: #0042A4; 
+      text-align:center; 
+      }
+      .spin_t {
+      font: 1.5em 'Roboto', sans-serif;
+      margin-bottom: 30px;
+      }
+      .spin {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #0042A4;
+      animation: spin 1s ease-in-out infinite;
+      -webkit-animation: spin 1s ease-in-out infinite;
+      }
+      @keyframes spin {
+      to { -webkit-transform: rotate(360deg); }
+      }
+      @-webkit-keyframes spin {
+      to { -webkit-transform: rotate(360deg); }
+      }
+      
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv2 {
+  display: none;
+  text-align: center;
+}
+    </style>
+<script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -75,17 +126,21 @@ text-align: centre;
     
     </tbody>
   </table>
+  <div class="spin_d" id="spin_div">
+  <div class="spin"></div>
+    <h1 class="spin_t">...</h1>
+  </div>
 </div>
 
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
 	<!-- Modal content -->
-	<div class="modal-content  content1" style="align:centre;width:95%;max-width:500px;">
-    <span class="close" style="align:centre;">&times;</span>
-		<div >		
+	<div class="modal-content"  style="align:centre;width:95%;max-width:500px;">
+    <span class="close">&times;</span>
+		<div class="container">		
         	
-            	<div >        
+            	<div class="content1">        
            			<h2>My Cart </h2>          
   					<table class="table table-borderless "id="myTableCart" >
     					<thead>
@@ -97,7 +152,8 @@ text-align: centre;
     					</thead>	
     					<tbody>
     					</tbody>
-  					</table>                 
+  					</table>     
+  
        			</div>       
 			    
                 
@@ -115,7 +171,7 @@ text-align: centre;
                     <div class="total-value final-value" id="basket-total">00.00</div>
                 </div>
                 <div class="summary-checkout">
-                    <button class="button button-1">Checkout</button>
+                    <button class="button button-1" id="checkout">Checkout</button>
                 </div>
             </div>
         </div>
@@ -125,12 +181,26 @@ text-align: centre;
 </div>
 
 
-<div class="container1" >
+
+
+<div class="container1" id="cartq" >
 	<div class="card1" id="cart_btn" >
 		<h3 id="no_of_items_in_cart" style="text-align: center;color:red"><b> </b></h3>
 		<h1 style="text-align: center;margin:10px"><i class="fas fa-cart-arrow-down"></i> </h1>
 	</div>
 </div>
+
+
+<div style="display:none;margin:auto;" id="myDiv" >
+ 
+  <p><br><br>Your order has been sent, please waite for conformation.... </p>
+  <div id="loader"></div>
+</div>
+ <div style="display:none;" id="myDiv2" class="animate-bottom">
+  <h2>Sucessfull!</h2>
+  <p><a>Go to track order</a> <a>log out</a></p>
+</div>
+
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
 
@@ -159,6 +229,7 @@ text-align: centre;
   
   var starCountRef = database.ref('Iitem');
   starCountRef.on('value', function(snapshot) {
+   document.getElementById("spin_div").style.display = "none";
  	var key = snapshot.key; // "ada"
   var table = document.getElementById("myTable");
   var rowCount=1;
@@ -168,26 +239,60 @@ text-align: centre;
 if(cell == null)
 {
 var row = table.insertRow(rowCount++);
+
 var cell1 = row.insertCell(0);
 var cell2 = row.insertCell(1);
 var cell3= row.insertCell(2);
-cell3.id = data.key+"_on_list"
-cell1.innerHTML = "<h4>"+data.key +' ( '+ data.val() +' ) '+"</h4>";
+cell3.id = data.key+"_on_list";
+cell1.id=data.key+"_u";
+cell1.innerHTML = data.key +' - '+ data.val();
 cell2.innerHTML = "<a  class='btn btn-info btn-lg' "+
-"onclick='addCart(&quot;"+data.key +"&quot;,&quot;"+data.val()+"&quot;)' ><span class='glyphicon glyphicon-shopping-cart'></span> Add </a>";
+"onclick='addCart(&quot;"+data.key +"&quot;,&quot;"+data.val()+"&quot;,"+0+")' ><span class='glyphicon glyphicon-shopping-cart'></span> Add </a>";
+  }
+  });
+  
+  firebase.database().ref(t+'/cart').once('value', function(snapshot) {
+  snapshot.forEach(function(data) {
+  var cell = document.getElementById(data.key+"_on_list");
+  var cell1 = document.getElementById(data.key+"_u");
+  if(typeof(cell) != 'undefined' && cell != null){
+  		cell.innerHTML=data.val();
+        addCart(data.key,cell1.innerHTML.split(" - ")[1],data.val());
   }
   });
 });
+});
 
+function showPageConformation() {
+  document.getElementById("myDiv").style.display = "none";
+  document.getElementById("myDiv2").style.display = "block";
+}
+function writeCart(item, quantity) {
+  firebase.database().ref(t+'/cart').child(item).set(quantity);
+}
+$("#checkout").click(post);
+function post(){
+if((document.getElementById("myTableCart").rows.length>1)){
+$.post("/pass", {from: t},function(result){
+     showPageConformation();
+    }
+  );
+modal.style.display = "none";
+document.getElementById("myTable").style.display = "none";
+document.getElementById("cartq").style.display = "none";
+document.getElementById("myDiv").style.display = "block";
+}else{
+alert("Empty Cart");
+}
+}
 </script>
 <script>
 
 
-function addCart(item,unit) {
-var cart=0;
+function addCart(item,unit,live) {
 var table = document.getElementById("myTableCart");
 var row = document.getElementById(item);
-var quantity=0;
+var quantity=live;
 var cell1=null ;
 var cell2 =null;
 var cell3=null ;
@@ -220,8 +325,10 @@ cell4.innerHTML = "<a   "+
 
     }
 
-
+if(live==0){
 quantity++;
+writeCart(item, quantity);
+}
 var price = parseFloat(unit.split("/"));
 var tot=price*quantity;
 var labelCartTot=document.getElementById("basket-total");
@@ -237,6 +344,7 @@ var noitem=table.rows.length-1;
 
 document.getElementById("tot_no").innerHTML=noitem;
 document.getElementById("no_of_items_in_cart").innerHTML=noitem;
+
 } 
 
 function deleteCart(item){
@@ -257,7 +365,7 @@ document.getElementById(item+"_on_list").innerHTML="";
 $("#"+item).slideUp(200, function() {
              $("#"+item).remove();
           });
-//table.deleteRow(i);
+ firebase.database().ref(t+'/cart').child(item).remove();
 }
 </script>
 <script>
@@ -290,7 +398,6 @@ window.onclick = function(event) {
   }
 }
 </script>
-
-
 </body>
 </html>
+<script>var t=9946784176;</script>
