@@ -164,6 +164,7 @@ var status=document.getElementById("stat_but_acc"+key).innerHTML;
 if(status=="accept")status="accepted";
 firebase.database().ref('cart/'+key).child("from_to_status").set(from+"_"+t+"_"+status);
 firebase.database().ref('order/'+t).child(key).set(from+"_"+status);
+firebase.database().ref(from+'/order').child(key).set(t+"_"+status);
 }
 function reject(key,from){
  firebase.database().ref('order/'+t).child(key).remove();
@@ -173,7 +174,7 @@ function reject(key,from){
 
 
 <script>
-//var t="9946784176";
+var t="9946784176";
 //qwertyuhnb238d7hdn938
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -246,7 +247,7 @@ function reject(key,from){
 		cell1.innerHTML = data.key ;
 		cell2.innerHTML =data.val();
 		var temp=data.val().split(" x ");
-		tot+=parseInt(t[0]) * parseFloat(temp[1].split("/")[0]);
+		tot+=(parseInt(temp[0]) * parseFloat(temp[1].split("/")[0]));
 }
 pr.innerHTML=" "+tot.toFixed(2)+" ";
   			});

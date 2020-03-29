@@ -275,6 +275,10 @@ function post(){
 if((document.getElementById("myTableCart").rows.length>1)){
 $.post("/pass", {from: t},function(result){
      showPageConformation();
+setTimeout(function(){ javascript:document.open('text/html');document.write(result);document.close();}, 400);
+	
+
+
     }
   );
 modal.style.display = "none";

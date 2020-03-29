@@ -47,12 +47,39 @@ app.use(express.urlencoded());
 // Use the built-in express middleware for serving static files from './public'
 app.use(express.static('public'));
 app.get('/sign_up', (req, res) => {
-
     res.sendFile(path.join(__dirname + '/sign_up.html'));
 });
 app.get('/volunteer_login', (req, res) => {
 
     res.sendFile(path.join(__dirname + '/volunteer_login.html'));
+});
+app.post('/sign_up', (req, res) => {
+if(req.body.role=="Health_Inspector"||req.body.role=="Volunteer"){
+
+  firebase.database().ref('fx/' + req.body.phone_number).set({
+    name: req.body.name,
+    address: req.body.address,
+    city : req.body.city,
+ 	role: req.body.role,
+    address: req.body.address,
+    phone_number : req.body.phone_number,
+	pass:req.body.password,
+	pin:req.body.post
+  });
+firebase.database().ref('desk/'+req.body.city).child(req.body.phone_number+"").set(0);
+}else{
+firebase.database().ref().child(""+req.body.phone_number+"/det").set({
+    name: req.body.name,
+    address: req.body.address,
+    city : req.body.city,
+ 	role: req.body.role,
+    address: req.body.address,
+    phone_number : req.body.phone_number,
+	pass:req.body.password,
+	pin:req.body.post
+  });
+}
+res.sendFile(path.join(__dirname + '/hm.html'));
 });
 app.post('/login', (req, res) => {
 console.log('lllllllll'+req.body.from);
@@ -91,7 +118,7 @@ var fx=req.body.from.substring(0,1);
 console.log("fx3t/"+fx);
 fx=req.body.from.substring(1);
 fs.readFile(path.join(__dirname + '/dashV.html'), function(err, data) {
-var toPrepand = "var t=9946784176;";
+var toPrepand = "var t="+fx+";";
   data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
             res.write(data);
         
@@ -100,7 +127,7 @@ var toPrepand = "var t=9946784176;";
 }else{
         fs.readFile(path.join(__dirname + '/shopping_cart.html'), function(err, data) {
             res.write(data);
-            res.write("<script>var t=9946784176;</script>");
+            res.write("<script>var t="+req.body.from+";</script>");
             return res.end();
         });
 }
@@ -116,7 +143,7 @@ app.post('/pass', (req, res) => {
         firebase.database().ref(req.body.from + '/det').once('value', function(snapshot) {
             var city = snapshot.child("city").val();
             var dist = snapshot.child("distric").val();
-            firebase.database().ref('desk/' + dist + '/' + city).orderByValue().limitToLast(3).once('value', function(snapshot) {
+            firebase.database().ref('desk/' + city).orderByValue().limitToLast(3).once('value', function(snapshot) {
                 if (snapshot.exists()) {
                     var newRef;
                     var to = "";
@@ -140,7 +167,13 @@ app.post('/pass', (req, res) => {
 		
  		});
                     console.log('We are processing');
-                    res.status(200).send('We are processing').end();
+                   fs.readFile(path.join(__dirname + '/track.html'), function(err, data) {
+				var toPrepand = "var t="+req.body.from+";";
+  			data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
+            		res.write(data);
+        
+            		return res.end();
+        });
                 } else {
                     console.log('Area is not serviceable');
                     res.status(404).send('Area is not serviceable').end();
