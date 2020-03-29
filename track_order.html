@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acsia</title>
+    <!-- Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="dashboard.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="home">
+        <div style="max-width:700px;margin: auto; padding: 2%;">
+            <p style="text-align:left;">
+                <h4 style="text-align: left; display: inline;">
+                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-shield-virus"></i>&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
+                        <div class=" dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome!</h6>
+                        </div>
+                        <a href="request_out" class="dropdown-item">
+                            <i class="fas fa-cloud-sun"></i>
+                            <span>Request to go out</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/" class="dropdown-item">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Login</span>
+                        </a>
+                    </div>
+                </h4>
+                <span style="float:right;">
+        <h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
+            class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
+            class="fas fa-handshake-slash"></i></h4>
+      </span>
+            </p>
+        </div>
+        <div class="container" style="margin: none; width: 100%;">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <form role="form">
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-delivery-fast"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Request ID" type="text">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button id="track" onclick="loadPage('/start_shopping')" type="button" class="btn btn-primary my-4">Track Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadPage(page) {
+            window.location.href = page;
+        }
+    </script>
+
+    <!--   Core   -->
+    <script src="assets/plugins/jquery/dist/jquery.min.js "></script>
+    <script src="assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
+</body>
+
+</html>

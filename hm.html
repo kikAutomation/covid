@@ -5,18 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Acsia</title>
     <!-- Icons -->
-    <link href="assets/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
-    <link href="assets/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link href="dashboard.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body>
-   
+<body onload="myPath()">
+
     <div id="home">
         <div style="max-width:700px;margin: auto; padding: 2%;">
             <p style="text-align:left;">
-                <h4 style="text-align: left; display: inline;"><i class="fas fa-shield-virus"></i> &nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
+                <h4 style="text-align: left; display: inline;">
+                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-shield-virus"></i>&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
+                        <div class=" dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome!</h6>
+                        </div>
+                        <a href="/sign_up" class="dropdown-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Sign Up</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="https://acsiatech.com/" class="dropdown-item">
+                            <i class="fas fa-cloud-sun"></i>
+                            <span>@Acsia</span>
+                        </a>
+                    </div>
                 </h4>
                 <span style="float:right;">
         <h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
@@ -30,13 +46,14 @@
                 <div class="col-lg-5 col-md-7">
                     <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
-                            <form role="form" action="/to_cart" method="post" id="ml" >
-				<span id="help-block">Log In</span>
-				<br>
+                            <form role="form" action="/to_cart" method="post" id="ml">
+                                <span id="help-block">Log In</span>
+                                <br>
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-mobile-alt"></i>
+                                            </span>
                                         </div>
                                         <input class="form-control" placeholder="Phone Number" type="tel" id="phone" name="from" required>
                                     </div>
@@ -44,7 +61,7 @@
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
                                         </div>
                                         <input class="form-control" placeholder="Password" type="password" id="pass" name="pass" required>
                                     </div>
@@ -71,36 +88,56 @@
         </div>
     </div>
 
-<script>
-	function post(){
-		var p=$("#pass").val();
-		var t=$("#phone").val();
-		if((p != "") && (t != "")){
+    <script>
+        function post() {
+            var p = $("#pass").val();
+            var t = $("#phone").val();
+            if ((p != "") && (t != "")) {
 
-		$.post("/login", {from: t,pass : p},function(data, status, jqXHR){
-     			 $("#ml").submit();                
-                  
-    			}).fail(function(jqXHR, textStatus, errorThrown){
-    		if(jqXHR.status == 404) {
-			error("<h4 style=&#8220;color=red;&#8220;>Please enter valid credential<h4>");
-   		}
-		});
-		
-		}else{
-			error("<h4 style=&#8220;color=red;&#8220;>Please fill both fields<h4>");
-		}
-	}
-    function error(val){
-document.getElementById('help-block').innerHTML=val;   	
-    }
-function help() {
-    var x = document.getElementById("home");
-}
+                $.post("/login", {
+                    from: t,
+                    pass: p
+                }, function(data, status, jqXHR) {
+                    $("#ml").submit();
+
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 404) {
+                        error("<h4 style=&#8220;color=red;&#8220;>Please enter valid credential<h4>");
+                    }
+                });
+
+            } else {
+                error("<h4 style=&#8220;color=red;&#8220;>Please fill both fields<h4>");
+            }
+        }
+
+        function error(val) {
+            document.getElementById('help-block').innerHTML = val;
+        }
+
+        function help() {
+            var x = document.getElementById("home");
+        }
+
         function loadPage(page) {
 
             window.location.href = page;
         }
     </script>
+<script>
+function myTrim(x) {
+  return x.replace(/ /g,'').replace(/\//g,'').replace(/\./g,'');
+}
+function myPath(){
+ $.get('https://covid-19-help-desk.firebaseio.com/keyy_b.json', function(data, status){
+
+	 if(data.includes("#")){
+      loadPage("/to_cart");
+}else{  loadPage("/shopping_cart");}
+    });
+}
+
+</script>
 
     <!--   Core   -->
     <script src="assets/plugins/jquery/dist/jquery.min.js "></script>

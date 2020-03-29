@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -7,395 +6,448 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="shopping_site.css" />
     <link rel="stylesheet" href="card_layout.css" />
-	<link rel="stylesheet" href="popup.css" />
-	<link rel="stylesheet" href="loader.css" />
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="loader.css" />
     <title>Basket</title>
-	 <style>
-.card1 {
-border-radius: 5px; 
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-   background-color: #FFC300;;
-  padding: 16px 16px 16px 16px;
-  
-}
-
-.card1:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.container1 {
-  padding: 16px 16px 16px 16px;
-  
- position: fixed;
-     bottom: 0px;
-     right: 0px; 
-   
-}
-table { 
- 
- width:100%;
-  
-
-}
-.container{
- 
-   position:relative;
-   display: block;
-  padding: 0px 0px 300px 0px;
-}
-td{
-text-align: centre;
-}
-</style>
-		<style>
-        .spin_d { 
-      
-      color: #0042A4; 
-      text-align:center; 
-      }
-      .spin_t {
-      font: 1.5em 'Roboto', sans-serif;
-      margin-bottom: 30px;
-      }
-      .spin {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(255,255,255,.3);
-      border-radius: 50%;
-      border-top-color: #0042A4;
-      animation: spin 1s ease-in-out infinite;
-      -webkit-animation: spin 1s ease-in-out infinite;
-      }
-      @keyframes spin {
-      to { -webkit-transform: rotate(360deg); }
-      }
-      @-webkit-keyframes spin {
-      to { -webkit-transform: rotate(360deg); }
-      }
-      
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
-}
-
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
-}
-
-#myDiv2 {
-  display: none;
-  text-align: center;
-}
+    <style>
+        .card1 {
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            background-color: #FFC300;
+            ;
+            padding: 16px 16px 16px 16px;
+        }
+        
+        .card1:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        .container1 {
+            padding: 16px 16px 16px 16px;
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+        }
+        
+        table {
+            width: 100%;
+        }
+        
+        .container {
+            position: relative;
+            display: block;
+            padding: 0px 0px 20px 0px;
+        }
+        
+        td {
+            text-align: centre;
+        }
     </style>
-<script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .spin_d {
+            color: #0042A4;
+            text-align: center;
+        }
+        
+        .spin_t {
+            font: 1.5em 'Roboto', sans-serif;
+            margin-bottom: 30px;
+        }
+        
+        .spin {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: #0042A4;
+            animation: spin 1s ease-in-out infinite;
+            -webkit-animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        @-webkit-keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        /* Add animation to "page content" */
+        
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+        
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+        
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+        
+        #myDiv2 {
+            display: none;
+            text-align: center;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body style="background-color:#eeeeee;">
 
-<div class="container" style="align:centre;width:95%;max-width:500px;" id="list">
-<br><br>
-    
-  <table class="table table-borderless "id="myTable" >
-  <br>
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th >Add to Cart</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-    
-    </tbody>
-  </table>
-  <div class="spin_d" id="spin_div">
-  <div class="spin"></div>
-    <h1 class="spin_t">...</h1>
-  </div>
-</div>
+    <div style="max-width:700px;margin: auto; padding: 2%;">
+        <p style="text-align:left;">
+            <h4 style="text-align: left; display: inline;">
+                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-shield-virus"></i>&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
+                    <div class=" dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Welcome!</h6>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="track" class="dropdown-item">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Track Request</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="request_out" class="dropdown-item">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span>Request to go out</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="out" class="dropdown-item">
+                        <i class="fas fa-power-off"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </h4>
+            <span style="float:right;">
+<h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
+    class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
+    class="fas fa-handshake-slash"></i></h4>
+</span>
+        </p>
+    </div>
+    <div class="container" style="align:centre;width:95%;max-width:500px;" id="list">
+        <table class="table table-borderless " id="myTable">
+            <br>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Add to Cart</th>
 
+                </tr>
+            </thead>
+            <tbody>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-	<!-- Modal content -->
-	<div class="modal-content"  style="align:centre;width:95%;max-width:500px;">
-    <span class="close">&times;</span>
-		<div class="container">		
-        	
-            	<div class="content1">        
-           			<h2>My Cart </h2>          
-  					<table class="table table-borderless "id="myTableCart" >
-    					<thead>
-      						<tr>
-        						<th>Item</th>
-        						<th>Quantity</th>
-      							<th>Price</th>
-                        	</tr>
-    					</thead>	
-    					<tbody>
-    					</tbody>
-  					</table>     
-  
-       			</div>       
-			    
-                
-                <!-- <aside> -->
-        <div class="content1 " style="padding-top: 1em;">
-            <div class="content1">
-                <div class="summary-total-items">
-                <span class="total-items"></span> <h4 id="tot_no">0</h4> Items in your Bag</div>
-               
-                </div>
-            </div>
-            <div class="content1">
-                <div class="summary-total">
-                    <div class="total-title">Total</div>
-                    <div class="total-value final-value" id="basket-total">00.00</div>
-                </div>
-                <div class="summary-checkout">
-                    <button class="button button-1" id="checkout">Checkout</button>
-                </div>
-            </div>
+            </tbody>
+        </table>
+        <div class="spin_d" id="spin_div">
+            <div class="spin"></div>
+            <h1 class="spin_t">...</h1>
         </div>
-                
-		</div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content" style="align:centre;width:95%;max-width:500px;">
+            <span class="close">&times;</span>
+            <div class="container">
+
+                <div class="content1">
+                    <h2>My Cart </h2>
+                    <table class="table table-borderless " id="myTableCart">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <!-- <aside> -->
+                <div class="content1 " style="padding-top: 1em;">
+                    <div class="content1">
+                        <div class="summary-total-items">
+                            <span class="total-items"></span>
+                            <h4 id="tot_no">0</h4> Items in your Bag</div>
+
+                    </div>
+                </div>
+                <div class="content1">
+                    <div class="summary-total">
+                        <div class="total-title">Total</div>
+                        <div class="total-value final-value" id="basket-total">00.00</div>
+                    </div>
+                    <div class="summary-checkout">
+                        <button class="button button-1" id="checkout">Checkout</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+    <div class="container1" id="cartq">
+        <div class="card1" id="cart_btn">
+            <h3 id="no_of_items_in_cart" style="text-align: center;color:red"><b> </b></h3>
+            <h1 style="text-align: center;margin:10px"><i class="fas fa-cart-arrow-down"></i> </h1>
+        </div>
+    </div>
+
+
+    <div style="display:none;margin:auto;" id="myDiv">
+
+        <p><br><br>Your order has been sent, please waite for conformation.... </p>
+        <div id="loader"></div>
+    </div>
+     <div style="display:none;" id="myDiv2" class="animate-bottom">
+  	<h2 id="msg">Sucessfull!</h2>
+  	<p id="msg_body"><a>Go to track order</a> <a>log out</a></p>
 	</div>
-</div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+
+    <script>
+
+//qwertyuhnb238d7hdn938
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAkGopYf5Rgen_GgBpJ_VwQAzNZ1LRx3sg",
+            authDomain: "covid-19-help-desk.firebaseapp.com",
+            databaseURL: "https://covid-19-help-desk.firebaseio.com",
+            projectId: "covid-19-help-desk",
+            storageBucket: "covid-19-help-desk.appspot.com",
+            messagingSenderId: "259588761043",
+            appId: "1:259588761043:web:b45b72ba9d8707bb6dfb26",
+            measurementId: "G-KZ7SN1WW8F"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
 
 
 
+        var database = firebase.database();
 
-<div class="container1" id="cartq" >
-	<div class="card1" id="cart_btn" >
-		<h3 id="no_of_items_in_cart" style="text-align: center;color:red"><b> </b></h3>
-		<h1 style="text-align: center;margin:10px"><i class="fas fa-cart-arrow-down"></i> </h1>
-	</div>
-</div>
+        var starCountRef = database.ref('Iitem');
+        starCountRef.on('value', function(snapshot) {
+            document.getElementById("spin_div").style.display = "none";
+            var key = snapshot.key; // "ada"
+            var table = document.getElementById("myTable");
+            var rowCount = 1;
+            snapshot.forEach(function(data) {
+                var cell = document.getElementById(data.key + "_on_list");
 
+                if (cell == null) {
+                    var row = table.insertRow(rowCount++);
 
-<div style="display:none;margin:auto;" id="myDiv" >
- 
-  <p><br><br>Your order has been sent, please waite for conformation.... </p>
-  <div id="loader"></div>
-</div>
- <div style="display:none;" id="myDiv2" class="animate-bottom">
-  <h2>Sucessfull!</h2>
-  <p><a>Go to track order</a> <a>log out</a></p>
-</div>
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    cell3.id = data.key + "_on_list";
+                    cell1.id = data.key + "_u";
+                    cell1.innerHTML = data.key + ' - ' + data.val();
+                    cell2.innerHTML = "<a  class='btn btn-info btn-lg' " +
+                        "onclick='addCart(&quot;" + data.key + "&quot;,&quot;" + data.val() + "&quot;," + 0 + ")' ><span class='glyphicon glyphicon-shopping-cart'></span> Add </a>";
+                }
+            });
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+            firebase.database().ref(t + '/cart').once('value', function(snapshot) {
+                snapshot.forEach(function(data) {
+                    var cell = document.getElementById(data.key + "_on_list");
+                    var cell1 = document.getElementById(data.key + "_u");
+                    if (typeof(cell) != 'undefined' && cell != null) {
+                        cell.innerHTML = data.val().split(" x ")[0];
+                        addCart(data.key, cell1.innerHTML.split(" - ")[1], cell.innerHTML);
+                    }
+                });
+            });
+        });
 
-<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+        function showPageConformation() {
+            document.getElementById("myDiv").style.display = "none";
+            document.getElementById("myDiv2").style.display = "block";
+        }
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAkGopYf5Rgen_GgBpJ_VwQAzNZ1LRx3sg",
-    authDomain: "covid-19-help-desk.firebaseapp.com",
-    databaseURL: "https://covid-19-help-desk.firebaseio.com",
-    projectId: "covid-19-help-desk",
-    storageBucket: "covid-19-help-desk.appspot.com",
-    messagingSenderId: "259588761043",
-    appId: "1:259588761043:web:b45b72ba9d8707bb6dfb26",
-    measurementId: "G-KZ7SN1WW8F"
-  };
- // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  
- 
-  
-  var database = firebase.database();
-  
-  var starCountRef = database.ref('Iitem');
-  starCountRef.on('value', function(snapshot) {
-   document.getElementById("spin_div").style.display = "none";
- 	var key = snapshot.key; // "ada"
-  var table = document.getElementById("myTable");
-  var rowCount=1;
-    snapshot.forEach(function(data) {
-    var cell = document.getElementById(data.key+"_on_list");
+        function writeCart(item, quantity) {
+            firebase.database().ref(t + '/cart').child(item).set(quantity);
+        }
+        $("#checkout").click(post);
 
-if(cell == null)
-{
-var row = table.insertRow(rowCount++);
+       function post(){
+	if((document.getElementById("myTableCart").rows.length>1)){
+	$.post("/pass", {from: t},function(result){
+     		showPageConformation();
+		//setTimeout(function(){ javascript:document.open('text/html');document.write(result);document.close();}, 400);
+    	}).fail(function(jqXHR, textStatus, errorThrown){
+    		if(jqXHR.status == 404) {
+		document.getElementById("msg").innerHTML = "Sorry !";
+  		document.getElementById("msg_body").innerHTML = jqXHR.responseText;
+		document.getElementById("myDiv").style.display = "none";
+  		document.getElementById("myDiv2").style.display = "block";
+   		}
+		});
+                modal.style.display = "none";
+                document.getElementById("myTable").style.display = "none";
+                document.getElementById("cartq").style.display = "none";
+                document.getElementById("myDiv").style.display = "block";
+            } else {
+                alert("Empty Cart");
+            }
+        }
+    </script>
+    <script>
+        function addCart(item, unit, live) {
+            var table = document.getElementById("myTableCart");
+            var row = document.getElementById(item);
+            var quantity = live;
+            var cell1 = null;
+            var cell2 = null;
+            var cell3 = null;
+            var cell4 = null;
+            if (typeof(row) != 'undefined' && row != null) {
+                cell1 = document.getElementById(item + "0");
+                cell2 = document.getElementById(item + "1");
+                cell3 = document.getElementById(item + "2");
+                cell4 = document.getElementById(item + "3");
+                quantity = parseInt(cell2.innerHTML);
+            } else {
+                row = table.insertRow(1);
+                row.id = item;
+                cell1 = row.insertCell(0);
+                cell2 = row.insertCell(1);
+                cell3 = row.insertCell(2);
+                cell4 = row.insertCell(3);
 
-var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
-var cell3= row.insertCell(2);
-cell3.id = data.key+"_on_list";
-cell1.id=data.key+"_u";
-cell1.innerHTML = data.key +' - '+ data.val();
-cell2.innerHTML = "<a  class='btn btn-info btn-lg' "+
-"onclick='addCart(&quot;"+data.key +"&quot;,&quot;"+data.val()+"&quot;,"+0+")' ><span class='glyphicon glyphicon-shopping-cart'></span> Add </a>";
-  }
-  });
-  
-  firebase.database().ref(t+'/cart').once('value', function(snapshot) {
-  snapshot.forEach(function(data) {
-  var cell = document.getElementById(data.key+"_on_list");
-  var cell1 = document.getElementById(data.key+"_u");
-  if(typeof(cell) != 'undefined' && cell != null){
-  		cell.innerHTML=data.val().split(" x ")[0];
-        addCart(data.key,cell1.innerHTML.split(" - ")[1],cell.innerHTML);
-  }
-  });
-});
-});
+                cell1.id = item + "0";
+                cell2.id = item + "1";
+                cell3.id = item + "2";
+                cell4.id = item + "3";
+                cell4.innerHTML = "<a   " +
+                    "onclick='deleteCart(&quot;" + item + "&quot;)' ><span class='glyphicon glyphicon-trash'></span></a>";
+            }
 
-function showPageConformation() {
-  document.getElementById("myDiv").style.display = "none";
-  document.getElementById("myDiv2").style.display = "block";
-}
-function writeCart(item, quantity) {
-  firebase.database().ref(t+'/cart').child(item).set(quantity);
-}
-$("#checkout").click(post);
-function post(){
-if((document.getElementById("myTableCart").rows.length>1)){
-$.post("/pass", {from: t},function(result){
-     showPageConformation();
-setTimeout(function(){ javascript:document.open('text/html');document.write(result);document.close();}, 400);
-	
+            if (live == 0) {
+                quantity++;
+            }
+            var price = parseFloat(unit.split("/"));
+            var tot = price * quantity;
+            var labelCartTot = document.getElementById("basket-total");
+            var cartTot = parseFloat(labelCartTot.innerHTML);
 
+            cell1.innerHTML = "<h3>" + item + " </h3>";
+            cell2.innerHTML = quantity + " x " + unit;
+            cell3.innerHTML = tot;
+            if (live == 0) {
+                writeCart(item, cell2.innerHTML);
+            }
+            labelCartTot.innerHTML = (cartTot + tot).toFixed(2);
+            document.getElementById(item + "_on_list").innerHTML = quantity;
+            var noitem = table.rows.length - 1;
 
-    }
-  );
-modal.style.display = "none";
-document.getElementById("myTable").style.display = "none";
-document.getElementById("cartq").style.display = "none";
-document.getElementById("myDiv").style.display = "block";
-}else{
-alert("Empty Cart");
-}
-}
-</script>
-<script>
+            document.getElementById("tot_no").innerHTML = noitem;
+            document.getElementById("no_of_items_in_cart").innerHTML = noitem;
 
+        }
 
-function addCart(item,unit,live) {
-var table = document.getElementById("myTableCart");
-var row = document.getElementById(item);
-var quantity=live;
-var cell1=null ;
-var cell2 =null;
-var cell3=null ;
-var cell4 =null;
-if(typeof(row) != 'undefined' && row != null){
-	cell1 = document.getElementById(item+"0");
-	cell2 = document.getElementById(item+"1");
-	cell3 = document.getElementById(item+"2");
-	cell4= document.getElementById(item+"3");
-	quantity=parseInt(cell2.innerHTML);
-}else{
-	row = table.insertRow(1);
-	row.id = item;
-	cell1 = row.insertCell(0);
-	cell2 = row.insertCell(1);
-	cell3 = row.insertCell(2);
-	cell4 = row.insertCell(3);
- 
-	cell1.id = item+"0";
-	cell2.id = item+"1";
-	cell3.id = item+"2";
-	cell4.id = item+"3";
-	cell4.innerHTML = "<a   "+
-"onclick='deleteCart(&quot;"+item+"&quot;)' ><span class='glyphicon glyphicon-trash'></span></a>";
-}
+        function deleteCart(item) {
+            var table = document.getElementById("myTableCart");
+            var labelCartTot = document.getElementById("basket-total");
+            var row = document.getElementById(item);
+            var quantity = 0;
 
-if(live==0){
-	quantity++;
-}
-var price = parseFloat(unit.split("/"));
-var tot=price*quantity;
-var labelCartTot=document.getElementById("basket-total");
-var cartTot=parseFloat(labelCartTot.innerHTML);
+            cell3 = document.getElementById(item + "2");
+            var tot = parseFloat(cell3.innerHTML);
+            var gtot = parseFloat(labelCartTot.innerHTML) - tot
+            labelCartTot.innerHTML = gtot.toFixed(2);
+            var noitem = table.rows.length - 2;
 
-cell1.innerHTML = "<h3>"+item+" </h3>";
-cell2.innerHTML =quantity +" x "+unit;
-cell3.innerHTML =tot;
-if(live==0){
-	writeCart(item, cell2.innerHTML);
-}
-labelCartTot.innerHTML=(cartTot+tot).toFixed(2);
-document.getElementById(item+"_on_list").innerHTML=quantity;
-var noitem=table.rows.length-1;
+            document.getElementById("tot_no").innerHTML = noitem;
+            document.getElementById("no_of_items_in_cart").innerHTML = noitem;
+            document.getElementById(item + "_on_list").innerHTML = "";
+            $("#" + item).slideUp(200, function() {
+                $("#" + item).remove();
+            });
+            firebase.database().ref(t + '/cart').child(item).remove();
+        }
+    </script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-document.getElementById("tot_no").innerHTML=noitem;
-document.getElementById("no_of_items_in_cart").innerHTML=noitem;
+        // Get the button that opens the modal
+        var btn = document.getElementById("cart_btn");
 
-} 
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-function deleteCart(item){
-var table = document.getElementById("myTableCart");
-var labelCartTot=document.getElementById("basket-total");
-var row = document.getElementById(item);
-var quantity=0;
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            document.body.className = 'modal-open';
+            modal.style.display = "block";
+        }
 
-  cell3 = document.getElementById(item+"2");
-var tot=parseFloat(cell3.innerHTML);
-  var gtot=parseFloat(labelCartTot.innerHTML)-tot
- labelCartTot.innerHTML=gtot.toFixed(2);
-  var noitem=table.rows.length-2;
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.className = 'modal-closed';
+        }
 
-document.getElementById("tot_no").innerHTML=noitem;
-document.getElementById("no_of_items_in_cart").innerHTML=noitem;
-document.getElementById(item+"_on_list").innerHTML="";
-$("#"+item).slideUp(200, function() {
-             $("#"+item).remove();
-          });
- firebase.database().ref(t+'/cart').child(item).remove();
-}
-</script>
-<script>
-// Get the modal
-var modal = document.getElementById("myModal");
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.className = 'modal-closed';
+            }
+        }
+    </script>
+</body>
 
-// Get the button that opens the modal
-var btn = document.getElementById("cart_btn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
- document.body.className = 'modal-open';
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-   document.body.className = 'modal-closed';
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-     document.body.className = 'modal-closed';
-  }
-}
-</script>
-</body></html>
-
+</html>

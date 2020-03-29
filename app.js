@@ -49,10 +49,7 @@ app.use(express.static('public'));
 app.get('/sign_up', (req, res) => {
     res.sendFile(path.join(__dirname + '/sign_up.html'));
 });
-app.get('/volunteer_login', (req, res) => {
 
-    res.sendFile(path.join(__dirname + '/volunteer_login.html'));
-});
 app.post('/sign_up', (req, res) => {
 if(req.body.role=="Health_Inspector"||req.body.role=="Volunteer"){
 
@@ -86,11 +83,13 @@ console.log('lllllllll'+req.body.from);
     if (req.body.from != "") {
 console.log("fx/"+req.body.from);
 var fx=req.body.from.substring(0,1);
+firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).set(req.body.from);
         if(fx.includes("#")){
 		fx=req.body.from.substring(1);
 console.log("fx/"+fx);
 		firebase.database().ref("fx/"+fx).once('value', function(snapshot) {
             		if(snapshot.child("pass").val()==req.body.pass){
+				
        				res.status(200).send('ok').end();
 			}else{
 				res.status(404).send('Unautharised').end();
@@ -187,11 +186,51 @@ app.post('/pass', (req, res) => {
         res.status(404).send('Unautharised').end();
     }
 });
+app.get('/to_cart', (req, res) => {
+myPath(req,res,'dashV');
+});
 app.get('/', (req, res) => {
-
-    res.sendFile(path.join(__dirname + '/hm.html'));
+myPath(req,res,'shopping_cart');
+});
+app.get('/shopping_cart', (req, res) => {
+myPath(req,res,'shopping_cart');
+});
+app.get('/request_out', (req, res) => {
+ 
+myPath(req,res,'request_to_out');
 });
 
+app.get('/track', (req, res) => {
+ myPath(req,res,'track');
+});
+app.get('/out', (req, res) => {
+ console.log(req.headers['user-agent']);
+firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).remove();
+    res.sendFile(path.join(__dirname + '/hm.html'));
+});
+function myTrim(x) {
+  return x.replace(/ /g,'').replace(/\//g,'').replace(/\./g,'');
+}
+function myPath(req,res,page){
+var fx;
+firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).once("value", function(snapshot) {
+if(snapshot.val()!=null){
+ fs.readFile(path.join(__dirname + '/'+page+'.html'), function(err, data) {
+if(snapshot.val().includes('#'))fx=snapshot.val().substring(1);else fx=snapshot.val();
+				var toPrepand = "var t="+fx+";";
+  			data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
+            		res.write(data);
+         console.log(snapshot.val());
+            		return res.end();
+});
+}else { 
+res.sendFile(path.join(__dirname + '/hm.html'));
+}
+	
+}, function (errorObject) {
+   res.sendFile(path.join(__dirname + '/hm.html'));
+});
+}
 // Start the server
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

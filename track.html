@@ -4,14 +4,20 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Track Order</title>
+ <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="shopping_site.css" />
+    <link rel="stylesheet" href="card_layout.css" />
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="loader.css" />
+
     <!-- Icons -->
     <link href="assets/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
     <link href="assets/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <!-- CSS -->
     <link href="dashboard.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="https://codepen.io/davidelrizzo/pen/eJwqzp">
-<link rel="stylesheet" type="text/css" href="https://codepen.io/davidelrizzo/pen/BjgXGg">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -215,26 +221,58 @@ border-radius: 5px;
   padding: 2px 16px;
 }
 </style>
+
+    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-<div id="home">
+<body style="background-color:#eeeeee;">
+
     <div style="max-width:700px;margin: auto; padding: 2%;">
-     	<p style="text-align:left;">
-            <h4 style="text-align: left; display: inline;"><i class="fas fa-shield-virus"></i> 
-            	&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;</h4>
+        <p style="text-align:left;">
+            <h4 style="text-align: left; display: inline;">
+                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-shield-virus"></i>&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
+                    <div class=" dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Welcome!</h6>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="shopping_cart" class="dropdown-item">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Start Shoping</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="request_out" class="dropdown-item">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span>Request to go out</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="out" class="dropdown-item">
+                        <i class="fas fa-power-off"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </h4>
             <span style="float:right;">
-        	<h4 style="text-align: right; display: inline;"><i class="fas fa-pump-medical"></i>
-            	<i class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> 
-            	<i class="fas fa-head-side-mask"></i> 
-            	<i class="fas fa-handshake-slash"></i></h4>
-      		</span>
-            </p>
-       </div>
-       <h2 align="center">Order(s)</h2>
+<h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
+    class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
+    class="fas fa-handshake-slash"></i></h4>
+</span>
+        </p>
+    </div>    
+       
 		<div id="root_div"></div>
 
 <script>
+//var t=9946784176;
 function display(id,d1,d2){
 var crt='<div class=" Rtable Rtable--2cols Rtable--collapse" id="m_'+id+'">'+
 '<div style="order:0;" class=" Rtable-cell Rtable-cell--head" id="m_m_'+id+'"><h5>'+d1+'</h5></div>'+
