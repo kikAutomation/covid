@@ -256,8 +256,8 @@ cell2.innerHTML = "<a  class='btn btn-info btn-lg' "+
   var cell = document.getElementById(data.key+"_on_list");
   var cell1 = document.getElementById(data.key+"_u");
   if(typeof(cell) != 'undefined' && cell != null){
-  		cell.innerHTML=data.val();
-        addCart(data.key,cell1.innerHTML.split(" - ")[1],data.val());
+  		cell.innerHTML=data.val().split(" x ")[0];
+        addCart(data.key,cell1.innerHTML.split(" - ")[1],cell.innerHTML);
   }
   });
 });
@@ -298,36 +298,29 @@ var cell2 =null;
 var cell3=null ;
 var cell4 =null;
 if(typeof(row) != 'undefined' && row != null){
-
-   
-     cell1 = document.getElementById(item+"0");
- cell2 = document.getElementById(item+"1");
-  cell3 = document.getElementById(item+"2");
- cell4= document.getElementById(item+"3");
-  quantity=parseInt(cell2.innerHTML);
+	cell1 = document.getElementById(item+"0");
+	cell2 = document.getElementById(item+"1");
+	cell3 = document.getElementById(item+"2");
+	cell4= document.getElementById(item+"3");
+	quantity=parseInt(cell2.innerHTML);
+}else{
+	row = table.insertRow(1);
+	row.id = item;
+	cell1 = row.insertCell(0);
+	cell2 = row.insertCell(1);
+	cell3 = row.insertCell(2);
+	cell4 = row.insertCell(3);
  
-    }else{
-
-  row = table.insertRow(1);
-        row.id = item;
-         cell1 = row.insertCell(0);
- cell2 = row.insertCell(1);
- cell3 = row.insertCell(2);
- cell4 = row.insertCell(3);
- 
- cell1.id = item+"0";
-cell2.id = item+"1";
-cell3.id = item+"2";
-cell4.id = item+"3";
-
-cell4.innerHTML = "<a   "+
+	cell1.id = item+"0";
+	cell2.id = item+"1";
+	cell3.id = item+"2";
+	cell4.id = item+"3";
+	cell4.innerHTML = "<a   "+
 "onclick='deleteCart(&quot;"+item+"&quot;)' ><span class='glyphicon glyphicon-trash'></span></a>";
-
-    }
+}
 
 if(live==0){
-quantity++;
-writeCart(item, quantity);
+	quantity++;
 }
 var price = parseFloat(unit.split("/"));
 var tot=price*quantity;
@@ -337,7 +330,9 @@ var cartTot=parseFloat(labelCartTot.innerHTML);
 cell1.innerHTML = "<h3>"+item+" </h3>";
 cell2.innerHTML =quantity +" x "+unit;
 cell3.innerHTML =tot;
-
+if(live==0){
+	writeCart(item, cell2.innerHTML);
+}
 labelCartTot.innerHTML=(cartTot+tot).toFixed(2);
 document.getElementById(item+"_on_list").innerHTML=quantity;
 var noitem=table.rows.length-1;
@@ -398,5 +393,5 @@ window.onclick = function(event) {
   }
 }
 </script>
-</body>
-</html>
+</body></html>
+

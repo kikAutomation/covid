@@ -57,27 +57,53 @@ app.get('/volunteer_login', (req, res) => {
 app.post('/login', (req, res) => {
 console.log('lllllllll'+req.body.from);
     if (req.body.from != "") {
-        // res.sendFile(path.join(__dirname + '/cart.html'));
- 	firebase.database().ref(req.body.from + '/det').once('value', function(snapshot) {
-            	if(snapshot.child("pass").val()==req.body.pass){
-       			res.status(200).send('ok').end();
-		}else{
-			res.status(404).send('Unautharised').end();
-		}
-	});
-    	} else {
-        	res.status(404).send('Unautharised').end();
-    	}
+console.log("fx/"+req.body.from);
+var fx=req.body.from.substring(0,1);
+        if(fx.includes("#")){
+		fx=req.body.from.substring(1);
+console.log("fx/"+fx);
+		firebase.database().ref("fx/"+fx).once('value', function(snapshot) {
+            		if(snapshot.child("pass").val()==req.body.pass){
+       				res.status(200).send('ok').end();
+			}else{
+				res.status(404).send('Unautharised').end();
+			}
+		});
+	}else{
+ 		firebase.database().ref(req.body.from + '/det').once('value', function(snapshot) {
+            		if(snapshot.child("pass").val()==req.body.pass){
+       				res.status(200).send('ok').end();
+			}else{
+				res.status(404).send('Unautharised').end();
+			}
+		});
+	}
+    } else {
+       	res.status(404).send('Unautharised').end();
+    }
 });
 app.post('/to_cart', (req, res) => {
     if (req.body.from != "") {
         // res.sendFile(path.join(__dirname + '/cart.html'));
-
+console.log("fx33/"+req.body.from);
+var fx=req.body.from.substring(0,1);
+        if(fx.includes("#")){
+console.log("fx3t/"+fx);
+fx=req.body.from.substring(1);
+fs.readFile(path.join(__dirname + '/dashV.html'), function(err, data) {
+var toPrepand = "var t=9946784176;";
+  data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
+            res.write(data);
+        
+            return res.end();
+        });
+}else{
         fs.readFile(path.join(__dirname + '/shopping_cart.html'), function(err, data) {
             res.write(data);
             res.write("<script>var t=9946784176;</script>");
             return res.end();
         });
+}
 
     } else {
         res.status(404).send('Unautharised').end();

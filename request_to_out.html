@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Request to go out</title>
+    <!-- Icons -->
+    <link href="assets/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="assets/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="dashboard.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- NAV-BAR -->
+    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark" style="background-color: #232d67;">
+        <div class="container px-4">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse-main">
+                <!-- Collapse header -->
+                <div class="navbar-collapse-header d-md-none">
+                    <div class="row">
+                        <div class="col-6 collapse-close">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                        <span></span>
+                        <span></span>
+                      </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navbar items -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="/">
+                            <i class="ni ni-circle-08"></i>
+                            <span class="nav-link-inner--text">Login</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="track">
+                            <i class="ni ni-delivery-fast"></i>
+                            <span class="nav-link-inner--text">Track Request</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="home">
+        <div style="max-width:700px;margin: auto; padding: 2%;">
+            <p style="text-align:left;">
+                <h4 style="text-align: left; display: inline;"><i class="fas fa-shield-virus"></i> &nbsp;Request to go out&nbsp;&nbsp;&nbsp;&nbsp;
+                </h4>
+                <span style="float:right;">
+        <h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
+            class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
+            class="fas fa-handshake-slash"></i></h4>
+      </span>
+            </p>
+        </div>
+        <div class="container" style="margin: none; width: 100%;">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 order-xl-1">
+                    <div class="card bg-secondary shadow">
+                        <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">Request Form</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form name="request_go_out" role="form" action="/request_go_out" method="post" id="f_request_go_out">
+                                <h6 class="heading-small text-muted mb-4">Personal information</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-first-name">First name</label>
+                                                <input name="first_name" type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-last-name">Last name</label>
+                                                <input name="last_name" type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Address -->
+                                <h6 class="heading-small text-muted mb-4">Address information</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-address">Address</label>
+                                                <input name="address" id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Street, House number / Flat number, House Name / Flat Name" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-city">City</label>
+                                                <select name="city" class="form-control" required>
+                                                    <option value=""> City / Town / Village </option>
+                                                    <option value="Trivandrum"> Trivandrum </option>
+                                                    <option value="Alappuzha"> Alappuzha </option>
+                                                    <option value="Ernakulam"> Ernakulam </option>
+                                                    <option value="Idukki"> Idukki </option>
+                                                    <option value="Kannur"> Kannur </option>
+                                                    <option value="Kasaragod"> Kasaragod </option>
+                                                    <option value="Kollam"> Kollam </option>
+                                                    <option value="Kottayam"> Kottayam </option>
+                                                    <option value="Kozhikode"> Kozhikode </option>
+                                                    <option value="Malappuram"> Malappuram </option>
+                                                    <option value="Palakkad"> Palakkad </option>
+                                                    <option value="Pathanamthitta"> Pathanamthitta </option>
+                                                    <option value="Thrissur"> Thrissur </option>
+                                                    <option value="Wayanad"> Wayanad </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-country">Country</label>
+                                                <input name="country" type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="India" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-country">Postal code</label>
+                                                <input name="postal_code" type="tel" id="input-postal-code" class="form-control form-control-alternative" pattern="[0-9][0-9][0-9][0-9][0-9][0-9]" required placeholder="Postal code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Dest Address -->
+                                <h6 class="heading-small text-muted mb-4">Destination</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-address">Address</label>
+                                                <input name="dest_address" id="input-dest-address" class="form-control form-control-alternative" placeholder="Home Address" value="Street, House number / Flat number, House Name / Flat Name" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-city">City</label>
+                                                <select name="dest_city" class="form-control" required>
+                                                    <option value=""> City / Town / Village </option>
+                                                    <option value="Trivandrum"> Trivandrum </option>
+                                                    <option value="Alappuzha"> Alappuzha </option>
+                                                    <option value="Ernakulam"> Ernakulam </option>
+                                                    <option value="Idukki"> Idukki </option>
+                                                    <option value="Kannur"> Kannur </option>
+                                                    <option value="Kasaragod"> Kasaragod </option>
+                                                    <option value="Kollam"> Kollam </option>
+                                                    <option value="Kottayam"> Kottayam </option>
+                                                    <option value="Kozhikode"> Kozhikode </option>
+                                                    <option value="Malappuram"> Malappuram </option>
+                                                    <option value="Palakkad"> Palakkad </option>
+                                                    <option value="Pathanamthitta"> Pathanamthitta </option>
+                                                    <option value="Thrissur"> Thrissur </option>
+                                                    <option value="Wayanad"> Wayanad </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-country">Country</label>
+                                                <input name="dest_country" type="text" id="input-dest-country" class="form-control form-control-alternative" placeholder="Country" value="India" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-country">Postal code</label>
+                                                <input name="dest_postal_code" type="number" id="input-dest-postal-code" class="form-control form-control-alternative" pattern="[0-9][0-9][0-9][0-9][0-9][0-9]" required placeholder="Postal code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Reason -->
+                                <h6 class="heading-small text-muted mb-4">Purpose</h6>
+                                <div class="pl-lg-4">
+                                    <div class="form-group">
+                                        <label>Purpose</label>
+                                        <textarea name="purpose" rows="4" class="form-control form-control-alternative" placeholder="Purpose for going out" required>To buy groceries from so and so place</textarea>
+                                    </div>
+                                </div>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-first-name">Vehicle Number</label>
+                                                <input name="vehicle_nuber" type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Vehicle Number" value="" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-last-name">Return Date</label>
+                                                <input name="return_date" type="date" id="input-last-name" class="form-control form-control-alternative" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button id="submit_request_go_out" onclick="post()" type="button" class="btn btn-primary my-4">Submit request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function loadPage(page) {
+                window.location.href = page;
+            }
+        </script>
+
+        <!--   Core   -->
+        <script src="assets/plugins/jquery/dist/jquery.min.js "></script>
+        <script src="assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js "></script>
+</body>
+
+</html>

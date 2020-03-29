@@ -7,6 +7,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dash</title>
+    <!-- Icons -->
+    <link href="assets/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="assets/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="dashboard.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
 <style>
 body{
     margin-top:20px;
@@ -70,7 +78,20 @@ body{
 .button_stat:hover {
  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
+#myDivt {
+  display: block;
+  text-align: center;
+}
 </style>
+<script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -81,14 +102,18 @@ body{
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<br>
+<div style="display:block;" id="myDivt" >
+  <h2>Desk</h2>
+  <p>All Your Orders </p>
+</div>
 <div class="container" >
     <div class="row" id="root_div">
        
 	</div>
 </div>
 
-</body>
+
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
 
@@ -98,31 +123,31 @@ body{
 <script>
 
 function pendingCard(status,id,name,phone,price){
-var display=(status=="pending")?"relative":"none";
+var display="relative";
 var icon="",style="";
 if(status=="pending"){
-icon="fa fa-refresh f-left";
+icon="fa fa-refresh f-right";
 style="bg-c-yellow";
 }else if(status=="accepted"){
-icon="fa fa-cart-plus f-left";
+icon="fa fa-cart-plus f-right";
 style="bg-c-green";
 }else if(status=="air"){
-icon="fa fa-rocket f-left";
+icon="fa fa-rocket f-right";
 style="bg-c-blue";
 }else if(status=="done"){
-icon="fa fa-credit-card f-left";
+icon="fa fa-credit-card f-right";
 style="bg-c-red";
 }else{
-icon="fa fa-ban f-left";
+icon="fa fa-ban f-right";
 style="bg-c-pink";
-} 
-var crd='<div class="col-md-4 col-xl-3">'
-           +'<div class="card '+style+' order-card">'
+}
+var crd='<div class="col-md-4 col-xl-3" id="div_"'+id+'>'
+           +'<div class="card '+style+' order-card" id="style_"'+id+'>'
                +' <div class="card-block">'
-               +'   <h6 class="m-b-20" ><label"id="label_stat_'+id+'" >Status : '+status+'</label> <button class="button_stat" id="stat_but_acc'+id+'" style="display:'+display+'";>accept</button>' 
-                 +' <button class="button_stat"id="stat_but_'+id+'" style="display:'+display+'";>reject</button></h6>'
+               +'   <h6 class="m-b-20" ><h4" id="label_stat_'+id+'" >Status : '+status+'</h4> <button class="button_stat" id="stat_but_acc'+id+'" style="display:'+display+'";>accept</button>' 
+                 +' <button class="button_stat"id="stat_but_rej'+id+'" style="display:'+display+'";>reject</button></h6>'
                    +' <h2 class="text-right"><i class="'+icon+'"></i>'
-                    +'<span>'+price+'</span></h2>'
+                    +'<span id="price_'+id+'"> '+price+' </span></h2>'
                    +' <p class="m-b-0">'+phone+'<span class="f-right">'+name+' </span></p>'
                     +'<table class="table table-borderless "id="myTableCart_'+id+'" >	'
     				+'<tbody></tbody>'
@@ -130,11 +155,26 @@ var crd='<div class="col-md-4 col-xl-3">'
                +' </div>'
            +' </div>';
 $('#root_div').append(crd);
-}
 
+$('#stat_but_acc'+id).attr('onClick', 'accept("'+id+'","'+phone+'");');
+$('#stat_but_rej'+id).attr('onClick', 'reject("'+id+'","'+phone+'");');
+}
+function accept(key,from){
+var status=document.getElementById("stat_but_acc"+key).innerHTML;
+if(status=="accept")status="accepted";
+firebase.database().ref('cart/'+key).child("from_to_status").set(from+"_"+t+"_"+status);
+firebase.database().ref('order/'+t).child(key).set(from+"_"+status);
+}
+function reject(key,from){
+ firebase.database().ref('order/'+t).child(key).remove();
+}
 </script>
+
+
+
 <script>
-var t=9946784176;
+//var t="9946784176";
+//qwertyuhnb238d7hdn938
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyAkGopYf5Rgen_GgBpJ_VwQAzNZ1LRx3sg",
@@ -150,17 +190,74 @@ var t=9946784176;
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   var database = firebase.database();
-  database.ref('order/'+t).once('value', function(snapshot) {  
- 		var key = snapshot.key; // "ada"
-    	snapshot.forEach(function(data) {
-    		var det=data.val().split('_');
-   			pendingCard(det[1],data.key,"...",det[0],"...");
+  database.ref('order/'+t).on('value', function(snapshot) {  
+ //	var key = snapshot.key; // "ada"
+	document.getElementById("root_div").innerHTML="";
+   	snapshot.forEach(function(data) {
+    var f=document.getElementById("div_"+data.key); 
+ 	
+ 		var det=data.val().split('_');
+ 		pendingCard(det[1],data.key,"...",det[0],"...");
+ 		
+        var pr=document.getElementById("price_"+data.key);
+ 		firebase.database().ref('cart/'+data.key).on('value', function(snapshot) {
+        	var key=snapshot.key;
+            var table=document.getElementById("myTableCart_"+key);
+            var tot=0;  
+ 			snapshot.forEach(function(data) {
+   				var row=document.getElementById("myTableCart_row_"+key+"_"+data.key);
+              
+  				if(data.key=="from_to_status"){
+  					var m=data.val().split("_");
+                   
+  					var stat=document.getElementById("label_stat_"+key);
+  						stat.innerHTML="Status : "+m[2];
+  						if(m[1]==t){
+  							if(m[2]=="accepted"){
+        						$("#style_"+key).attr('class', 'bg-c-green');
+        						var b1=document.getElementById("stat_but_acc"+key);
+         						$("#stat_but_rej"+key).remove();
+         						b1.innerHTML="air";
+        					}else if(m[2]=="air"){
+         						$("#style_"+key).attr('class', 'card bg-c-blue order-card');
+        						$( "#stat_but_acc"+key ).remove();
+        						$( "#stat_but_rej"+key ).remove();
+        					}else if(m[2]=="done"){
+        						$("#style_"+key).attr('class', 'card bg-c-red order-card');
+        					}else{
+            					$( "#div_"+key ).remove();
+        					}
+  					}else if (m[1]=="x"){
+                    }else {
+   						$( "#div_"+key ).remove();
+        				firebase.database().ref('order/'+t).child(key).remove();
+  					}
+ 		 	}else{
+  				var cell1=document.getElementById("myTableCart_row_c1"+key+"_"+data.key)
+                ,cell2=document.getElementById("myTableCart_row_c2"+key+"_"+data.key);
+  				if(row==null){
+					var row = table.insertRow(0);
+					row.id="myTableCart_row_"+key+"_"+data.key;
+ 					cell1 = row.insertCell(0);
+                    row.id="myTableCart_row_c1"+key+"_"+data.key;
+ 					cell2 = row.insertCell(1);
+                    row.id="myTableCart_row_c2"+key+"_"+data.key;
+			}
+		cell1.innerHTML = data.key ;
+		cell2.innerHTML =data.val();
+		var temp=data.val().split(" x ");
+		tot+=parseInt(t[0]) * parseFloat(temp[1].split("/")[0]);
+}
+pr.innerHTML=" "+tot.toFixed(2)+" ";
+  			});
 		});
 	});
+});
 function writeCart(item, quantity) {
   firebase.database().ref(t+'/cart').child(item).set(quantity);
 }
 
 </script>
-</html>
+</body></html>
+
 
