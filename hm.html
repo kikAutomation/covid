@@ -24,12 +24,12 @@
                             <h6 class="text-overflow m-0">Welcome!</h6>
                         </div>
                         <a href="/sign_up" class="dropdown-item">
-                            <i class="fas fa-shipping-fast"></i>
+                            <i class="fas fa-user-plus"></i>
                             <span>Sign Up</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="https://acsiatech.com/" class="dropdown-item">
-                            <i class="fas fa-cloud-sun"></i>
+                            <i class="fas fa-globe"></i>
                             <span>@Acsia</span>
                         </a>
                     </div>
@@ -124,20 +124,22 @@
             window.location.href = page;
         }
     </script>
-<script>
-function myTrim(x) {
-  return x.replace(/ /g,'').replace(/\//g,'').replace(/\./g,'');
-}
-function myPath(){
- $.get('https://covid-19-help-desk.firebaseio.com/keyy_b.json', function(data, status){
+    <script>
+        function myTrim(x) {
+            return x.replace(/ /g, '').replace(/\//g, '').replace(/\./g, '');
+        }
 
-	 if(data.includes("#")){
-      loadPage("/to_cart");
-}else{  loadPage("/shopping_cart");}
-    });
-}
+        function myPath() {
+            $.get('https://covid-19-help-desk.firebaseio.com/keyy_b.json', function(data, status) {
 
-</script>
+                if (data.includes("#")) {
+                    loadPage("/to_cart");
+                } else {
+                    loadPage("/shopping_cart");
+                }
+            });
+        }
+    </script>
 
     <!--   Core   -->
     <script src="assets/plugins/jquery/dist/jquery.min.js "></script>

@@ -1,0 +1,309 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Icons -->
+    <link href="public/assets/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="public/assets/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link href="dashboard.css" rel="stylesheet" />
+    <title>Basket</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- NAV-BAR -->
+    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark" style="background-color: #232d67;">
+        <div class="container px-4">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse-main">
+                <!-- Collapse header -->
+                <div class="navbar-collapse-header d-md-none">
+                    <div class="row">
+                        <div class="col-6 collapse-close">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                    <span></span>
+                    <span></span>
+                  </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navbar items -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="hm.html">
+                            <i class="ni ni-planet"></i>
+                            <span class="nav-link-inner--text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="../examples/register.html">
+                            <i class="ni ni-circle-08"></i>
+                            <span class="nav-link-inner--text">Track Request</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="../examples/login.html">
+                            <i class="ni ni-key-25"></i>
+                            <span class="nav-link-inner--text">Request </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="head" style="max-width:700px;margin: auto;">
+        <p style="text-align:left;">
+            <h4 style="text-align: left; display: inline;"><i class="fas fa-shield-virus"></i> &nbsp;Shop Now&nbsp;&nbsp;&nbsp;&nbsp;
+            </h4>
+            <span style="float:right;">
+            <h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
+                class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
+                class="fas fa-handshake-slash"></i></h4>
+          </span>
+        </p>
+        <div class="content1 card1">
+            <div class="content1">
+                <div>
+                    <div style="height: 5%; box-shadow: none;">
+                        <select id="set" name="delivery-collection" class="summary-delivery-selection" style="float: left; height: 100%; width: 70%;">
+                            <option value="0" selected="selected">Select item</option>
+                        </select>
+                        <button class="button button-1" style="float: right; width: 25%; -webkit-appearance: none;">Add</button>
+                    </div>
+                </div>
+                <div class="basket-labels">
+                    <ul>
+                        <li class="item item-heading">Item</li>
+                        <li class="price">Price</li>
+                        <li class="quantity">Quantity</li>
+                        <li class="subtotal">Subtotal</li>
+                    </ul>
+                </div>
+                <div class="basket-product">
+                    <div class="item">
+                        <div class="product-details">
+                            <h1><strong><span class="item-quantity">4</span> x Rice</strong></h1>
+                        </div>
+                    </div>
+                    <div class="price">26.00</div>
+                    <div class="quantity">
+                        <input type="number" value="4" min="1" class="quantity-field">
+                    </div>
+                    <div class="subtotal">104.00</div>
+                    <div class="remove">
+                        <button>Remove</button>
+                    </div>
+                </div>
+                <div class="basket-product">
+                    <div class="item">
+                        <div class="product-details">
+                            <h1><strong><span class="item-quantity">4</span> x Bread</strong></h1>
+                        </div>
+                    </div>
+                    <div class="price">26.00</div>
+                    <div class="quantity">
+                        <input type="number" value="4" min="1" class="quantity-field">
+                    </div>
+                    <div class="subtotal">104.00</div>
+                    <div class="remove">
+                        <button>Remove</button>
+                    </div>
+                </div>
+                <div class="basket-product">
+                    <div class="item">
+                        <div class="product-details">
+                            <h1><strong><span class="item-quantity">1</span> x Milk</strong></h1>
+                        </div>
+                    </div>
+                    <div class="price">26.00</div>
+                    <div class="quantity">
+                        <input type="number" value="4" min="1" class="quantity-field">
+                    </div>
+                    <div class="subtotal">34.00</div>
+                    <div class="remove">
+                        <button>Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <aside> -->
+        <div class="content1 card1" style="padding-top: 1em;">
+            <div class="content1">
+                <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+                <div class="summary-subtotal">
+                    <div class="subtotal-title">Subtotal</div>
+                    <div class="subtotal-value final-value" id="basket-subtotal">130.00</div>
+                    <div class="summary-promo hide">
+                        <div class="promo-title">Promotion</div>
+                        <div class="promo-value final-value" id="basket-promo"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content1">
+                <div class="summary-total">
+                    <div class="total-title">Total</div>
+                    <div class="total-value final-value" id="basket-total">130.00</div>
+                </div>
+                <div class="summary-checkout">
+                    <button class="button button-1">Checkout</button>
+                </div>
+            </div>
+        </div>
+        <!-- </aside> -->
+    </div>
+
+    <script>
+        /* Set values + misc */
+        var fadeTime = 300;
+
+        /* Assign actions */
+        $('.quantity input').change(function() {
+            updateQuantity(this);
+        });
+
+        $('.remove button').click(function() {
+            removeItem(this);
+        });
+
+        $(document).ready(function() {
+            updateSumItems();
+        });
+
+        /* Recalculate cart */
+        function recalculateCart(onlyTotal) {
+            var subtotal = 0;
+
+            /* Sum up row totals */
+            $('.basket-product').each(function() {
+                subtotal += parseFloat($(this).children('.subtotal').text());
+            });
+
+            /* Calculate totals */
+            var total = subtotal;
+
+            /*If switch for update only total, update only total display*/
+            if (onlyTotal) {
+                /* Update total display */
+                $('.total-value').fadeOut(fadeTime, function() {
+                    $('#basket-total').html(total.toFixed(2));
+                    $('.total-value').fadeIn(fadeTime);
+                });
+            } else {
+                /* Update summary display. */
+                $('.final-value').fadeOut(fadeTime, function() {
+                    $('#basket-subtotal').html(subtotal.toFixed(2));
+                    $('#basket-total').html(total.toFixed(2));
+                    if (total == 0) {
+                        $('.checkout-cta').fadeOut(fadeTime);
+                    } else {
+                        $('.checkout-cta').fadeIn(fadeTime);
+                    }
+                    $('.final-value').fadeIn(fadeTime);
+                });
+            }
+        }
+
+        /* Update quantity */
+        function updateQuantity(quantityInput) {
+            /* Calculate line price */
+            var productRow = $(quantityInput).parent().parent();
+            var price = parseFloat(productRow.children('.price').text());
+            var quantity = $(quantityInput).val();
+            var linePrice = price * quantity;
+
+            /* Update line price display and recalc cart totals */
+            productRow.children('.subtotal').each(function() {
+                $(this).fadeOut(fadeTime, function() {
+                    $(this).text(linePrice.toFixed(2));
+                    recalculateCart();
+                    $(this).fadeIn(fadeTime);
+                });
+            });
+
+            productRow.find('.item-quantity').text(quantity);
+            updateSumItems();
+        }
+
+        function updateSumItems() {
+            var sumItems = 0;
+            $('.quantity input').each(function() {
+                sumItems += parseInt($(this).val());
+            });
+            $('.total-items').text(sumItems);
+        }
+
+        /* Remove item from cart */
+        function removeItem(removeButton) {
+            /* Remove row from DOM and recalc cart total */
+            var productRow = $(removeButton).parent().parent();
+            productRow.slideUp(fadeTime, function() {
+                productRow.remove();
+                recalculateCart();
+                updateSumItems();
+            });
+        }
+
+        /* Add item from cart */
+        function addItem() {
+            /* Add row to DOM and recalc cart total */
+            var product_name =
+                productRow.slideUp(fadeTime, function() {
+                    productRow.remove();
+                    recalculateCart();
+                    updateSumItems();
+                });
+        }
+    </script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAkGopYf5Rgen_GgBpJ_VwQAzNZ1LRx3sg",
+            authDomain: "covid-19-help-desk.firebaseapp.com",
+            databaseURL: "https://covid-19-help-desk.firebaseio.com",
+            projectId: "covid-19-help-desk",
+            storageBucket: "covid-19-help-desk.appspot.com",
+            messagingSenderId: "259588761043",
+            appId: "1:259588761043:web:b45b72ba9d8707bb6dfb26",
+            measurementId: "G-KZ7SN1WW8F"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+
+
+        var database = firebase.database();
+
+        var starCountRef = database.ref('Iitem');
+        starCountRef.on('value', function(snapshot) {
+            var key = snapshot.key; // "ada"
+            var select = document.getElementById("set");
+            snapshot.forEach(function(data) {
+                var el = document.createElement("option");
+
+                el.textContent = data.key + ' ( ' + data.val() + ' ) ';
+                el.value = data.key;
+                select.appendChild(el);
+            });
+        });
+    </script>
+    <!--   Core   -->
+    <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

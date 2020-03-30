@@ -54,26 +54,26 @@ app.post('/sign_up', (req, res) => {
 if(req.body.role=="Health_Inspector"||req.body.role=="Volunteer"){
 
   firebase.database().ref('fx/' + req.body.phone_number).set({
-    name: req.body.name,
+    name: req.body.name+"",
     address: req.body.address,
     city : req.body.city,
  	role: req.body.role,
     address: req.body.address,
     phone_number : req.body.phone_number,
 	pass:req.body.password,
-	pin:req.body.post
+	pin:req.body.po
   });
 firebase.database().ref('desk/'+req.body.city).child(req.body.phone_number+"").set(0);
 }else{
 firebase.database().ref().child(""+req.body.phone_number+"/det").set({
-    name: req.body.name,
+    name: req.body.name+"",
     address: req.body.address,
     city : req.body.city,
  	role: req.body.role,
     address: req.body.address,
     phone_number : req.body.phone_number,
 	pass:req.body.password,
-	pin:req.body.post
+	pin:req.body.po
   });
 }
 res.sendFile(path.join(__dirname + '/hm.html'));
@@ -190,7 +190,7 @@ app.get('/to_cart', (req, res) => {
 myPath(req,res,'dashV');
 });
 app.get('/', (req, res) => {
-myPath(req,res,'shopping_cart');
+myPath(req,res,'/');
 });
 app.get('/shopping_cart', (req, res) => {
 myPath(req,res,'shopping_cart');
@@ -213,10 +213,20 @@ function myTrim(x) {
 }
 function myPath(req,res,page){
 var fx;
+
 firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).once("value", function(snapshot) {
 if(snapshot.val()!=null){
+if(snapshot.val().includes('#')){
+		fx=snapshot.val().substring(1);
+	if(page=="/")page='dashV';
+	}else{ 
+if(page=="/")page='shopping_cart';
+		fx=snapshot.val();
+	}
  fs.readFile(path.join(__dirname + '/'+page+'.html'), function(err, data) {
-if(snapshot.val().includes('#'))fx=snapshot.val().substring(1);else fx=snapshot.val();
+	
+	
+
 				var toPrepand = "var t="+fx+";";
   			data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
             		res.write(data);

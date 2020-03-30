@@ -2,130 +2,135 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dash</title>
+ 
     <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            margin-top: 20px;
-            background: #FAFAFA;
-        }
-        
-        .order-card {
-            color: #fff;
-        }
-        
-        .bg-c-blue {
-            background: linear-gradient(45deg, #4099ff, #73b4ff);
-        }
-        
-        .bg-c-green {
-            background: linear-gradient(45deg, #2ed8b6, #59e0c5);
-        }
-        
-        .bg-c-yellow {
-            background: linear-gradient(45deg, #FFB64D, #ffcb80);
-        }
-        
-        .bg-c-pink {
-            background: linear-gradient(45deg, #FF5370, #ff869a);
-        }
-        
-        .bg-c-red {
-            background: linear-gradient(45deg, #FF5370, #B00020);
-        }
-        
-        .card {
-            border-radius: 5px;
-            -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-            box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-            border: none;
-            margin-bottom: 30px;
-            -webkit-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .card .card-block {
-            padding: 25px;
-        }
-        
-        .order-card i {
-            font-size: 26px;
-        }
-        
-        .f-left {
-            float: left;
-        }
-        
-        .f-right {
-            float: right;
-        }
-        
-        .button_stat {
-            background-color: white;
-            color: black;
-            border: 2px solid #e7e7e7;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        
-        .button_stat:hover {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
-        
-        #myDivt {
-            display: block;
-            text-align: center;
-        }
-    </style>
-    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- CSS -->
+    <link href="dashboard.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-    <br>
-    <div style="max-width:700px;margin: auto; padding: 2%;">
-        <p style="text-align:left;">
-            <h4 style="text-align: left; display: inline;">
-                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-shield-virus"></i>&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
-                </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome!</h6>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <a href="out" class="dropdown-item">
-                        <i class="fas fa-power-off"></i>
-                        <span>Logout</span>
+<body class="">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div class="container-fluid">
+            </button>
+            <!-- Brand -->
+            <br>
+            <br>
+            <br>
+            <!-- <a class="navbar-brand pt-0" href="../index.html">
+                <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+            </a> -->
+            <!-- User -->
+            <ul class="nav align-items-center d-md-none">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="media align-items-center">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                        <div class=" dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome!</h6>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="dashV" class="dropdown-item">
+                            <i class="fas fa-list"></i>
+                            <span>Requests</span>
+                        </a>
+                        <a href="out" class="dropdown-item">
+                            <i class="fas fa-power-off"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <!-- Collapse header -->
+                <div class="navbar-collapse-header d-md-none">
+                    <div class="row">
+                        <div class="col-6 collapse-close">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav" style="float: right;"> 
+                <span></span>
+                <span></span>
+              </button>
+                        </div>
+                    </div>
                 </div>
-            </h4>
-            <span style="float:right;">
-  <h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
-      class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
-      class="fas fa-handshake-slash"></i></h4>
-</span>
-        </p>
-    </div>
-    <div style="display:block;" id="myDivt">
-        <h2>Desk</h2>
-        <p>All Your Orders </p>
-    </div>
-    <div class="container">
-        <div class="row" id="root_div">
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item  active ">
+                        <a class="nav-link " href="/to_cart">
+                            <i class="fas fa-desktop"></i></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  active ">
+                            <i class="fas fa-list"></i></i> Requests
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="out">
+                            <i class="fas fa-power-off"></i></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+            <div class="container-fluid">
+                <!-- Brand -->
+                <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="#">Requests</a>
+                <!-- User -->
+                <ul class="navbar-nav align-items-center d-none d-md-flex">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center">
+                                <span class="rounded-circle">
+                                    <i class="fas fa-user-cog"></i>
+                </span>
+                                <div id=userName class="media-body ml-2 d-none d-lg-block">
+                                    <span class="mb-0 text-sm  font-weight-bold"></span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                            <div class=" dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome!</h6>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="out" class="dropdown-item">
+                                <i class="fas fa-power-off"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <!-- Header -->
+        <div class="header pt-md-4">
+        </div>
 
+        <div class="container-fluid" style="padding-top: 2%;">
+            <div class="header-body">
+                <!-- Card stats -->
+                <div class="row" id="root_div">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -138,37 +143,58 @@
     <script>
         function pendingCard(status, id, name, phone, price) {
             var display = "relative";
-            var icon = "",
-                style = "";
-            if (status == "pending") {
-                icon = "fa fa-refresh f-right";
-                style = "bg-c-yellow";
-            } else if (status == "accepted") {
-                icon = "fa fa-cart-plus f-right";
-                style = "bg-c-green";
-            } else if (status == "processing") {
-                icon = "fa fa-rocket f-right";
-                style = "bg-c-blue";
-            } else if (status == "done") {
-                icon = "fa fa-credit-card f-right";
-                style = "bg-c-red";
-            } else {
-                icon = "fa fa-ban f-right";
-                style = "bg-c-pink";
+            var icon_bg = "bg-danger"
+            var icon = "fa fa-ban f-right";
+            switch (status) {
+                case "pending":
+                    icon = "fa fa-refresh f-right";
+                    icon_bg = "bg-warning";
+                    break;
+                case "accepted":
+                    icon = "fa fa-cart-plus f-right";
+                    icon_bg = "bg-info";
+                    break;
+                case "processing":
+                    icon_bg = "bg-yellow";
+                    icon = "fa fa-rocket f-right";
+                    break;
+                case "done":
+                    icon_bg = "bg-success";
+                    icon = "fa fa-credit-card f-right";
+                    break;
+                default:
+                    icon_bg = "bg-danger";
+                    icon = "fa fa-ban f-right";
+                    break;
             }
-            var crd = '<div class="col-md-4 col-xl-3" id="div_"' + id + '>' +
-                '<div class="card ' + style + ' order-card" id="style_"' + id + '>' +
-                ' <div class="card-block">' +
-                '   <h6 class="m-b-20" ><h4" id="label_stat_' + id + '" >Status : ' + status + '</h4> <button class="button_stat" id="stat_but_acc' + id + '" style="display:' + display + '";>accept</button>' +
-                ' <button class="button_stat"id="stat_but_rej' + id + '" style="display:' + display + '";>reject</button></h6>' +
-                ' <h2 class="text-right"><i class="' + icon + '"></i>' +
-                '<span id="price_' + id + '"> ' + price + ' </span></h2>' +
-                ' <p class="m-b-0">' + phone + '<span class="f-right">' + name + ' </span></p>' +
-                '<table class="table table-borderless "id="myTableCart_' + id + '" >	' +
-                '<tbody></tbody>' +
-                '</table> ' +
-                ' </div>' +
-                ' </div>';
+
+            var crd = '<div id="div_' + id + '" class="col-xl-3 col-lg-6" style="padding-top: 2%;">' +
+                '<div class="card card-stats mb-4 mb-xl-0">' +
+                '<div class="card-body">' +
+                '<div class="row">' +
+                '<div class="col">' +
+                '<h5 id="label_stat_' + id + '" class="card-title text-uppercase text-muted mb-0">Status: ' + status + '</h5>' +
+                '<span id="price_' + id + '" class="h2 font-weight-bold mb-0">' + price + '</span>' +
+                '<div class="btn-wrapper text-left">' +
+                '<br>' +
+                '<td><button id="stat_but_acc' + id + '" type="button" style=" margin: 5px 5px 5px 5px;display:' + display + ';" class="btn btn-secondary btn-sm">accept</button>' +
+                '<button id="stat_but_rej' + id + '" type="button" style=" margin: 5px 5px 5px 5px;display:' + display + ';" class="btn btn-secondary btn-sm">reject</button></td>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-auto">' +
+                '<div id="style_' + id + '"class="icon icon-shape ' + icon_bg + ' text-white rounded-circle shadow">' +
+                '<i class="' + icon + '"></i>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<br>' +
+                '<span class="text-muted mr-2">' + phone + '</span>' +
+                '<p id="itemtb_' + id + '" class="mt-3 mb-0 text-muted text-sm">' +
+                '<span class="text-nowrap"></span>' +
+                '</p>' +
+                '</div>' +
+                '</div>'
+
             $('#root_div').append(crd);
 
             $('#stat_but_acc' + id).attr('onClick', 'accept("' + id + '","' + phone + '");');
@@ -178,6 +204,7 @@
         function accept(key, from) {
             var status = document.getElementById("stat_but_acc" + key).innerHTML;
             if (status == "accept") status = "accepted";
+            if (status == "process") status = "processing";
             firebase.database().ref('cart/' + key).child("from_to_status").set(from + "_" + t + "_" + status);
             firebase.database().ref('order/' + t).child(key).set(from + "_" + status);
         }
@@ -207,7 +234,6 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
         var database = firebase.database();
-        var t = "9946784176"
         database.ref('order/' + t).on('value', function(snapshot) {
             //	var key = snapshot.key; // "ada"
             document.getElementById("root_div").innerHTML = "";
@@ -218,54 +244,41 @@
                 pendingCard(det[1], data.key, "...", det[0], "...");
 
                 var pr = document.getElementById("price_" + data.key);
+                var itemtb = document.getElementById("itemtb_" + data.key);
                 firebase.database().ref('cart/' + data.key).on('value', function(snapshot) {
                     var key = snapshot.key;
-                    var table = document.getElementById("myTableCart_" + key);
                     var tot = 0;
+                    var tbl = ""
                     snapshot.forEach(function(data) {
-                        var row = document.getElementById("myTableCart_row_" + key + "_" + data.key);
-
                         if (data.key == "from_to_status") {
                             var m = data.val().split("_");
-
                             var stat = document.getElementById("label_stat_" + key);
                             stat.innerHTML = "Status : " + m[2];
                             if (m[1] == t) {
                                 if (m[2] == "accepted") {
-                                    $("#style_" + key).attr('class', 'bg-c-green');
                                     var b1 = document.getElementById("stat_but_acc" + key);
                                     $("#stat_but_rej" + key).remove();
-                                    b1.innerHTML = "processing";
+                                    b1.innerHTML = "process";
                                 } else if (m[2] == "processing") {
-                                    $("#style_" + key).attr('class', 'card bg-c-blue order-card');
                                     $("#stat_but_acc" + key).remove();
                                     $("#stat_but_rej" + key).remove();
-                                } else if (m[2] == "done") {
-                                    $("#style_" + key).attr('class', 'card bg-c-red order-card');
                                 } else {
-                                    $("#div_" + key).remove();
+                                    $("#stat_but_acc" + key).remove();
+                                    $("#stat_but_rej" + key).remove();
                                 }
                             } else if (m[1] == "x") {} else {
                                 $("#div_" + key).remove();
                                 firebase.database().ref('order/' + t).child(key).remove();
                             }
                         } else {
-                            var cell1 = document.getElementById("myTableCart_row_c1" + key + "_" + data.key),
-                                cell2 = document.getElementById("myTableCart_row_c2" + key + "_" + data.key);
-                            if (row == null) {
-                                var row = table.insertRow(0);
-                                row.id = "myTableCart_row_" + key + "_" + data.key;
-                                cell1 = row.insertCell(0);
-                                row.id = "myTableCart_row_c1" + key + "_" + data.key;
-                                cell2 = row.insertCell(1);
-                                row.id = "myTableCart_row_c2" + key + "_" + data.key;
-                            }
-                            cell1.innerHTML = data.key;
-                            cell2.innerHTML = data.val();
                             var temp = data.val().split(" x ");
-                            tot += parseInt(t[0]) * parseFloat(temp[1].split("/")[0]);
+
+                            tot += parseInt(temp[0]) * parseFloat(temp[1].split("/")[0]);
+                            tbl += '<p>' + data.key + ' - ' + data.val() + '</p>';
                         }
+
                         pr.innerHTML = " " + tot.toFixed(2) + " ";
+                        itemtb.innerHTML = tbl
                     });
                 });
             });

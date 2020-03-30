@@ -1,333 +1,170 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Track Order</title>
- <meta http-equiv="x-ua-compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="shopping_site.css" />
-    <link rel="stylesheet" href="card_layout.css" />
-    <link rel="stylesheet" href="popup.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Track Order</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
     <link rel="stylesheet" href="loader.css" />
 
-    <!-- Icons -->
-    <link href="assets/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
-    <link href="assets/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <!-- CSS -->
     <link href="dashboard.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
-
-<style>
-.Rtable {
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 0 1em 0;
-  padding: 0;
-}
-.Rtable-cell {
-  box-sizing: border-box;
-  -webkit-box-flex: 1;
-          flex-grow: 1;
-  width: 100%;
-  padding: 0.8em 1.2em;
-  overflow: hidden;
-  list-style: none;
-  border: solid 1px white;
-  background: rgba(112, 128, 144, 0.2);
-}
-.Rtable-cell > h1,
-.Rtable-cell > h2,
-.Rtable-cell > h3,
-.Rtable-cell > h4,
-.Rtable-cell > h5,
-.Rtable-cell > h6 {
-  margin: 0;
-}
-/* Table column sizing
-================================== */
-.Rtable--2cols > .Rtable-cell {
-  width: 50%;
-}
-.Rtable--3cols > .Rtable-cell {
-  width: 33.33%;
-}
-.Rtable--4cols > .Rtable-cell {
-  width: 25%;
-}
-.Rtable--5cols > .Rtable-cell {
-  width: 20%;
-}
-.Rtable--6cols > .Rtable-cell {
-  width: 16.6%;
-}
-/* Page styling
-================================== */
-@font-face {
-  font-family: 'Josefin Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/josefinsans/v15/Qw3PZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_DjQbMZhKg.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Josefin Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/josefinsans/v15/Qw3PZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_N_XbMZhKg.ttf) format('truetype');
-}
-html {
-  height: 100%;
-  background-color: #EEE;
-}
-body {
-  box-sizing: border-box;
-  min-height: 100%;
-  margin: 0 auto;
-  padding: 2em;
-  max-width: 800px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 1.2em;
-  background-color: white;
-  
-  border-top: none;
-  border-bottom: none;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-}
-h3 {
-  font-size: 1.2em;
-}
-h4 {
-  font-size: 1em;
-}
-strong {
-  color: #434d57;
-}
-/* Apply styles
-================================== */
-.Rtable {
-  position: relative;
-  top: 3px;
-  left: 3px;
-}
-.Rtable-cell {
-  margin: -3px 0 0 -3px;
-  background-color: white;
-  border-color: #e2e6e9;
-}
-/* Cell styles
-================================== */
-.Rtable-cell--dark {
-  background-color: slategrey;
-  border-color: #5a6673;
-  color: white;
-}
-.Rtable-cell--dark > h1,
-.Rtable-cell--dark > h2,
-.Rtable-cell--dark > h3,
-.Rtable-cell--dark > h4,
-.Rtable-cell--dark > h5,
-.Rtable-cell--dark > h6 {
-  color: white;
-}
-.Rtable-cell--medium {
- 
-}
-.Rtable-cell--light {
- 
-}
-.Rtable-cell--highlight {
- 
-}
-.Rtable-cell--alert {
- 
-}
-.Rtable-cell--alert > h1,
-.Rtable-cell--alert > h2,
-.Rtable-cell--alert > h3,
-.Rtable-cell--alert > h4,
-.Rtable-cell--alert > h5,
-.Rtable-cell--alert > h6 {
-  color: black;
-}
-.Rtable-cell--head {
- 
-}
-.Rtable-cell--head > h1,
-.Rtable-cell--head > h2,
-.Rtable-cell--head > h3,
-.Rtable-cell--head > h4,
-.Rtable-cell--head > h5,
-.Rtable-cell--head > h6 {
-  color: black;
-}
-.Rtable-cell--foot {
-  
-}
-
-@media all and (max-width: 500px) {
-  .Rtable--collapse {
-    display: block;
-  }
-  .Rtable--collapse > .Rtable-cell {
-    width: 100% !important;
-  }
-  .Rtable--collapse > .Rtable-cell--foot {
-    margin-bottom: 1em;
-  }
-}
-.no-flexbox .Rtable {
-  display: block;
-}
-.no-flexbox .Rtable > .Rtable-cell {
-  width: 100%;
-}
-.no-flexbox .Rtable > .Rtable-cell--foot {
-  margin-bottom: 1em;
-}
-
-</style>
-<style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-border-radius: 5px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.container {
-  padding: 2px 16px;
-}
-</style>
-
-    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<body style="background-color:#eeeeee;">
-
-    <div style="max-width:700px;margin: auto; padding: 2%;">
-        <p style="text-align:left;">
-            <h4 style="text-align: left; display: inline;">
-                <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-shield-virus"></i>&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
-                </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome!</h6>
+<body>
+    <div id="home">
+        <div style="max-width:700px;margin: auto; padding: 2%;">
+            <p style="text-align:left;">
+                <h4 style="text-align: left; display: inline;">
+                    <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-shield-virus"></i>&nbsp;Help Desk &nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
+                        <div class=" dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome!</h6>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="shopping_cart" class="dropdown-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Start Shoping</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="request_out" class="dropdown-item">
+                            <i class="fas fa-cloud-sun"></i>
+                            <span>Request to go out</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="out" class="dropdown-item">
+                            <i class="fas fa-power-off"></i>
+                            <span>Logout</span>
+                        </a>
                     </div>
-                    <div class="dropdown-divider"></div>
-                    <a href="shopping_cart" class="dropdown-item">
-                        <i class="fas fa-shipping-fast"></i>
-                        <span>Start Shoping</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="request_out" class="dropdown-item">
-                        <i class="fas fa-cloud-sun"></i>
-                        <span>Request to go out</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="out" class="dropdown-item">
-                        <i class="fas fa-power-off"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </h4>
-            <span style="float:right;">
+                </h4>
+                <span style="float:right;">
 <h4 style="text-align: right; display: inline;"> <i class="fas fa-pump-medical"></i> <i
     class="fas fa-hands-wash"></i> <i class="fas fa-house-user"></i> <i class="fas fa-head-side-mask"></i> <i
     class="fas fa-handshake-slash"></i></h4>
 </span>
-        </p>
-    </div>    
-       
-		<div id="root_div"></div>
+            </p>
+        </div>
+        <div class="container-fluid">
+            <div class="header-body">
+                <!-- Card stats -->
+                <div id="root_div" class="row">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //var t=9946784176;
+        function display(id, d1, d2, status) {
+            // alert("d2 :: " + d2)
+            // alert("Status :: " + status)
+            var icon_bg = "bg-danger"
+            var icon = "fa fa-ban f-right";
+            switch (status) {
+                case "pending":
+                    icon = "fa fa-refresh f-right";
+                    icon_bg = "bg-warning";
+                    break;
+                case "accepted":
+                    icon = "fa fa-cart-plus f-right";
+                    icon_bg = "bg-info";
+                    break;
+                case "processing":
+                    icon_bg = "bg-yellow";
+                    icon = "fa fa-rocket f-right";
+                    break;
+                case "done":
+                    icon_bg = "bg-success";
+                    icon = "fa fa-credit-card f-right";
+                    break;
+                default:
+                    icon_bg = "bg-danger";
+                    icon = "fa fa-ban f-right";
+                    break;
+            }
+            var crt = '<div class="col-xl-3 col-lg-6" style="padding-top: 2%;">' +
+                '<div class="card card-stats mb-4 mb-xl-0">' +
+                '<div class="card-body">' +
+                '<div class="row">' +
+                '<div class="col">' +
+                '<span class="h2 font-weight-bold mb-0">' + d1 + '</span>' +
+                '</div>' +
+                '<div class="col-auto">' +
+                '<div class="icon icon-shape ' + icon_bg + ' text-white rounded-circle shadow">' +
+                '<i class="' + icon + '"></i>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<p id="m_m_m_' + id + '" class="mt-3 mb-0 text-muted text-sm">' +
+                '<spam class="text-nowrap">' + d2 + '</spam>' +
+                '</p>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
+            $('#root_div').append(crt);
+        }
+    </script>
+    <script>
+        //qwertyuhnb238d7hdn938
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAkGopYf5Rgen_GgBpJ_VwQAzNZ1LRx3sg",
+            authDomain: "covid-19-help-desk.firebaseapp.com",
+            databaseURL: "https://covid-19-help-desk.firebaseio.com",
+            projectId: "covid-19-help-desk",
+            storageBucket: "covid-19-help-desk.appspot.com",
+            messagingSenderId: "259588761043",
+            appId: "1:259588761043:web:b45b72ba9d8707bb6dfb26",
+            measurementId: "G-KZ7SN1WW8F"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+        var database = firebase.database();
+        database.ref(t + '/order').on('value', function(snapshot) {
+            document.getElementById("root_div").innerHTML = "";
+            snapshot.forEach(function(data) {
 
-<script>
-//var t=9946784176;
-function display(id,d1,d2){
-var crt='<div class=" Rtable Rtable--2cols Rtable--collapse" id="m_'+id+'">'+
-'<div style="order:0;" class=" Rtable-cell Rtable-cell--head" id="m_m_'+id+'"><h5>'+d1+'</h5></div>'+
- ' <div style="order:0;" class="Rtable-cell Rtable-cell--head" id="m_m_m_'+id+
- '"><h5>'+d2+'</h5></div>'+'</div>';
-$('#root_div').append(crt);
-}
-</script>
-<script>
-//var t=9847044399;
-//qwertyuhnb238d7hdn938
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAkGopYf5Rgen_GgBpJ_VwQAzNZ1LRx3sg",
-    authDomain: "covid-19-help-desk.firebaseapp.com",
-    databaseURL: "https://covid-19-help-desk.firebaseio.com",
-    projectId: "covid-19-help-desk",
-    storageBucket: "covid-19-help-desk.appspot.com",
-    messagingSenderId: "259588761043",
-    appId: "1:259588761043:web:b45b72ba9d8707bb6dfb26",
-    measurementId: "G-KZ7SN1WW8F"
-  };
- // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
- // firebase.analytics();
-  var database = firebase.database();
- database.ref(t+'/order').on('value', function(snapshot) {  
-  document.getElementById("root_div").innerHTML="";
- 	snapshot.forEach(function(data) {
-    
-    	var res=data.val().split("_");
-        var df;
-        if(res[1]=="pending")df="Send to "; else df = "Attended by";
-        var d='<p>Order Id :'+data.key+'</p>'+'<p> Status : '+res[1]+'</p>'+
-        		'<p> '+df+' :'+res[0]+'</p>';
-                display(data.key,d,'loading...');
-            database.ref('cart/'+data.key).once('value', function(snapshot) {  
-            var tbl="";var tot=0;
- 			snapshot.forEach(function(data) {
-            if(data.key!='from_to_status'){
-            	var tmp=data.val().split(" x ");
-                var tt=parseInt(tmp[0]) * parseFloat(tmp[1].split("/")[0]);
-            	tbl+='<p>'+data.key+' - '+data.val()+'</p>';
-            	tot+=tt;
-           }
-             });
-             tbl+='<p>[ Total : '+tot.toFixed(2)+' ]</p>';
-             var pp= document.getElementById("m_m_m_"+snapshot.key);
-          	pp.innerHTML=tbl;
- 			});
-           
-    });
- });
-</script>
+                var res = data.val().split("_");
+                var df;
+                if (res[1] == "pending") df = "Send to ";
+                else df = "Attended by";
+                var d = '<p>Order Id :' + data.key + '</p>' + '<p> Status : ' + res[1] + '</p>' +
+                    '<p> ' + df + ' :' + res[0] + '</p>';
+                display(data.key, d, 'loading...', res[1]);
+                database.ref('cart/' + data.key).once('value', function(snapshot) {
+                    var tbl = "";
+                    var tot = 0;
+                    snapshot.forEach(function(data) {
+                        if (data.key != 'from_to_status') {
+                            var tmp = data.val().split(" x ");
+                            var tt = parseInt(tmp[0]) * parseFloat(tmp[1].split("/")[0]);
+                            tbl += '<p>' + data.key + ' - ' + data.val() + '</p>';
+                            tot += tt;
+                        }
+                    });
+                    tbl += '<p>[ Total : ' + tot.toFixed(2) + ' ]</p>';
+                    var pp = document.getElementById("m_m_m_" + snapshot.key);
+                    pp.innerHTML = tbl;
+                });
+
+            });
+        });
+    </script>
 </body>
 
 </html>
-

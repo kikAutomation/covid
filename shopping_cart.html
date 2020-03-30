@@ -4,12 +4,46 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="shopping_site.css" />
-    <link rel="stylesheet" href="card_layout.css" />
+ 
+<link rel="stylesheet" href="shopping_site.css" />
+   
     <link rel="stylesheet" href="popup.css" />
     <link rel="stylesheet" href="loader.css" />
+
+   
+ 
+    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   
+  
+   
+<link href="dashboard.css" rel="stylesheet" />
     <title>Basket</title>
     <style>
+.button {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.button-1 {
+    background-color: #232d67;
+    border: 3px solid #232d67;
+    border-radius: 50px;
+    -webkit-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+    color: #ffffff;
+}
         .card1 {
             border-radius: 5px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -24,7 +58,7 @@
         }
         
         .container1 {
-            padding: 16px 16px 16px 16px;
+            padding: 6px 6px 6px 6px;
             position: fixed;
             bottom: 0px;
             right: 0px;
@@ -114,14 +148,7 @@
             text-align: center;
         }
     </style>
-    <script src="https://kit.fontawesome.com/af9ae991ce.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
 </head>
 
 <body style="background-color:#eeeeee;">
@@ -182,12 +209,13 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
-        <div class="modal-content" style="align:centre;width:95%;max-width:500px;">
-            <span class="close">&times;</span>
+        <div class="modal-content" style="align:centre;width:100%;max-width:500px;">
+            <span class="close" style="text-align: right;">&times;</span>
+<h6 style="text-align: center;">My Cart </h6>
             <div class="container">
 
                 <div class="content1">
-                    <h2>My Cart </h2>
+                    
                     <table class="table table-borderless " id="myTableCart">
                         <thead>
                             <tr>
@@ -205,14 +233,14 @@
 
                 <!-- <aside> -->
                 <div class="content1 " style="padding-top: 1em;">
-                    <div class="content1">
+                    <div class="">
                         <div class="summary-total-items">
                             <span class="total-items"></span>
                             <h4 id="tot_no">0</h4> Items in your Bag</div>
 
                     </div>
                 </div>
-                <div class="content1">
+                <div class="">
                     <div class="summary-total">
                         <div class="total-title">Total</div>
                         <div class="total-value final-value" id="basket-total">00.00</div>
@@ -295,7 +323,7 @@
                     cell1.id = data.key + "_u";
                     cell1.innerHTML = data.key + ' - ' + data.val();
                     cell2.innerHTML = "<a  class='btn btn-info btn-lg' " +
-                        "onclick='addCart(&quot;" + data.key + "&quot;,&quot;" + data.val() + "&quot;," + 0 + ")' ><span class='glyphicon glyphicon-shopping-cart'></span> Add </a>";
+                        "onclick='addCart(&quot;" + data.key + "&quot;,&quot;" + data.val() + "&quot;," + 0 + ")' ><i class='fas fa-cart-plus'></i> Add </a>";
                 }
             });
 
@@ -371,7 +399,7 @@
                 cell3.id = item + "2";
                 cell4.id = item + "3";
                 cell4.innerHTML = "<a   " +
-                    "onclick='deleteCart(&quot;" + item + "&quot;)' ><span class='glyphicon glyphicon-trash'></span></a>";
+                    "onclick='deleteCart(&quot;" + item + "&quot;)' ><i class='far fa-trash-alt'></i></a>";
             }
 
             if (live == 0) {
