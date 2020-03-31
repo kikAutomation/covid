@@ -195,7 +195,7 @@
                 '</div>' +
                 '</div>'
 
-            $('#root_div').append(crd);
+            $('#root_div').prepend(crd);
 
             $('#stat_but_acc' + id).attr('onClick', 'accept("' + id + '","' + phone + '");');
             $('#stat_but_rej' + id).attr('onClick', 'reject("' + id + '","' + phone + '");');

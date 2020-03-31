@@ -51,85 +51,96 @@ app.get('/sign_up', (req, res) => {
 });
 
 app.post('/sign_up', (req, res) => {
-if(req.body.role=="Health_Inspector"||req.body.role=="Volunteer"){
+    var ref, isOfficial;
+    if (req.body.role == "Health_Inspector" || req.body.role == "Volunteer") {
+        isOfficial = true;
+        ref = firebase.database().ref('fx/');
 
-  firebase.database().ref('fx/' + req.body.phone_number).set({
-    name: req.body.name+"",
-    address: req.body.address,
-    city : req.body.city,
- 	role: req.body.role,
-    address: req.body.address,
-    phone_number : req.body.phone_number,
-	pass:req.body.password,
-	pin:req.body.po
-  });
-firebase.database().ref('desk/'+req.body.city).child(req.body.phone_number+"").set(0);
-}else{
-firebase.database().ref().child(""+req.body.phone_number+"/det").set({
-    name: req.body.name+"",
-    address: req.body.address,
-    city : req.body.city,
- 	role: req.body.role,
-    address: req.body.address,
-    phone_number : req.body.phone_number,
-	pass:req.body.password,
-	pin:req.body.po
-  });
-}
-res.sendFile(path.join(__dirname + '/hm.html'));
+    } else {
+        isOfficial = false;
+        ref = firebase.database().ref();
+    }
+    ref.child(req.body.phone_number).once('value', function(snapshot) {
+        if (snapshot.val() != null) {
+
+            fs.readFile(path.join(__dirname + '/err.html'), function(err, data) {
+                var toPrepand = req.body.phone_number + " Is already exisist.Please enter a new phone no to Sign Up";
+                data = data.toString().replace("#skjfjkhfeiylweorfkjjnebhfdfyehfjlkrfhegrfnclkjdvboehfied", toPrepand);
+                res.write(data);
+                return res.end();
+            });
+        } else {
+            ref.child(req.body.phone_number).set({
+                name: req.body.name + "",
+                address: req.body.address,
+                city: req.body.city,
+                role: req.body.role,
+                address: req.body.address,
+                phone_number: req.body.phone_number,
+                pass: req.body.password,
+                pin: req.body.po
+            });
+            if (isOfficial) {
+                firebase.database().ref('desk/' + req.body.city).child(req.body.phone_number + "").set(0);
+
+            }
+            res.sendFile(path.join(__dirname + '/hm.html'));
+        }
+    });
+
 });
 app.post('/login', (req, res) => {
-console.log('lllllllll'+req.body.from);
+    console.log('lllllllll' + req.body.from);
     if (req.body.from != "") {
-console.log("fx/"+req.body.from);
-var fx=req.body.from.substring(0,1);
-firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).set(req.body.from);
-        if(fx.includes("#")){
-		fx=req.body.from.substring(1);
-console.log("fx/"+fx);
-		firebase.database().ref("fx/"+fx).once('value', function(snapshot) {
-            		if(snapshot.child("pass").val()==req.body.pass){
-				
-       				res.status(200).send('ok').end();
-			}else{
-				res.status(404).send('Unautharised').end();
-			}
-		});
-	}else{
- 		firebase.database().ref(req.body.from + '/det').once('value', function(snapshot) {
-            		if(snapshot.child("pass").val()==req.body.pass){
-       				res.status(200).send('ok').end();
-			}else{
-				res.status(404).send('Unautharised').end();
-			}
-		});
-	}
+        console.log("fx/" + req.body.from);
+        var fx = req.body.from.substring(0, 1);
+        firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).set(req.body.from);
+        if (fx.includes("#")) {
+            fx = req.body.from.substring(1);
+            console.log("fx/" + fx);
+            firebase.database().ref("fx/" + fx).once('value', function(snapshot) {
+                if (snapshot.child("pass").val() == req.body.pass) {
+
+                    res.status(200).send('ok').end();
+                } else {
+                    res.status(404).send('Unautharised').end();
+                }
+            });
+        } else {
+            firebase.database().ref(req.body.from + '/det').once('value', function(snapshot) {
+                if (snapshot.child("pass").val() == req.body.pass) {
+                    res.status(200).send('ok').end();
+                } else {
+                    res.status(404).send('Unautharised').end();
+                }
+            });
+        }
     } else {
-       	res.status(404).send('Unautharised').end();
+        res.status(404).send('Unautharised').end();
     }
 });
 app.post('/to_cart', (req, res) => {
     if (req.body.from != "") {
         // res.sendFile(path.join(__dirname + '/cart.html'));
-console.log("fx33/"+req.body.from);
-var fx=req.body.from.substring(0,1);
-        if(fx.includes("#")){
-console.log("fx3t/"+fx);
-fx=req.body.from.substring(1);
-fs.readFile(path.join(__dirname + '/dashV.html'), function(err, data) {
-var toPrepand = "var t="+fx+";";
-  data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
-            res.write(data);
-        
-            return res.end();
-        });
-}else{
-        fs.readFile(path.join(__dirname + '/shopping_cart.html'), function(err, data) {
-            res.write(data);
-            res.write("<script>var t="+req.body.from+";</script>");
-            return res.end();
-        });
-}
+        console.log("fx33/" + req.body.from);
+        var fx = req.body.from.substring(0, 1);
+        if (fx.includes("#")) {
+            console.log("fx3t/" + fx);
+            fx = req.body.from.substring(1);
+            fs.readFile(path.join(__dirname + '/dashV.html'), function(err, data) {
+                var toPrepand = "var t=" + fx + ";";
+                data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand);
+                res.write(data);
+
+                return res.end();
+            });
+        } else {
+            fs.readFile(path.join(__dirname + '/shopping_cart.html'), function(err, data) {
+                res.write(data);
+                res.write("<script>var t=" + req.body.from + ";</script>");
+                return res.end();
+            });
+        }
 
     } else {
         res.status(404).send('Unautharised').end();
@@ -157,22 +168,22 @@ app.post('/pass', (req, res) => {
                         console.log(req.body.from + "_pending");
                     });
                     firebase.database().ref(req.body.from + '/order/').child(newRef.key).set(to + "_pending");
-		firebase.database().ref(req.body.from+ '/cart').once('value', function(snapshot) {
- 			snapshot.forEach(function(data) {
-				firebase.database().ref('cart/').child(newRef.key).child(data.key).set(data.val());
- 			});
-		firebase.database().ref('cart/').child(newRef.key).child('from_to_status').set(req.body.from+"_x"+"_pending");
- 		firebase.database().ref(req.body.from).child('cart').remove();
-		
- 		});
+                    firebase.database().ref(req.body.from + '/cart').once('value', function(snapshot) {
+                        snapshot.forEach(function(data) {
+                            firebase.database().ref('cart/').child(newRef.key).child(data.key).set(data.val());
+                        });
+                        firebase.database().ref('cart/').child(newRef.key).child('from_to_status').set(req.body.from + "_x" + "_pending");
+                        firebase.database().ref(req.body.from).child('cart').remove();
+
+                    });
                     console.log('We are processing');
-                   fs.readFile(path.join(__dirname + '/track.html'), function(err, data) {
-				var toPrepand = "var t="+req.body.from+";";
-  			data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
-            		res.write(data);
-        
-            		return res.end();
-        });
+                    fs.readFile(path.join(__dirname + '/track.html'), function(err, data) {
+                        var toPrepand = "var t=" + req.body.from + ";";
+                        data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand);
+                        res.write(data);
+
+                        return res.end();
+                    });
                 } else {
                     console.log('Area is not serviceable');
                     res.status(404).send('Area is not serviceable').end();
@@ -187,59 +198,61 @@ app.post('/pass', (req, res) => {
     }
 });
 app.get('/to_cart', (req, res) => {
-myPath(req,res,'dashV');
+    myPath(req, res, 'dashV');
 });
 app.get('/', (req, res) => {
-myPath(req,res,'/');
+    myPath(req, res, '/');
 });
 app.get('/shopping_cart', (req, res) => {
-myPath(req,res,'shopping_cart');
+    myPath(req, res, 'shopping_cart');
 });
 app.get('/request_out', (req, res) => {
- 
-myPath(req,res,'request_to_out');
+
+    myPath(req, res, 'request_to_out');
 });
 
 app.get('/track', (req, res) => {
- myPath(req,res,'track');
+    myPath(req, res, 'track');
 });
 app.get('/out', (req, res) => {
- console.log(req.headers['user-agent']);
-firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).remove();
+    console.log(req.headers['user-agent']);
+    firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).remove();
     res.sendFile(path.join(__dirname + '/hm.html'));
 });
+
 function myTrim(x) {
-  return x.replace(/ /g,'').replace(/\//g,'').replace(/\./g,'');
+    return x.replace(/ /g, '').replace(/\//g, '').replace(/\./g, '');
 }
-function myPath(req,res,page){
-var fx;
 
-firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).once("value", function(snapshot) {
-if(snapshot.val()!=null){
-if(snapshot.val().includes('#')){
-		fx=snapshot.val().substring(1);
-	if(page=="/")page='dashV';
-	}else{ 
-if(page=="/")page='shopping_cart';
-		fx=snapshot.val();
-	}
- fs.readFile(path.join(__dirname + '/'+page+'.html'), function(err, data) {
-	
-	
+function myPath(req, res, page) {
+    var fx;
 
-				var toPrepand = "var t="+fx+";";
-  			data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand );
-            		res.write(data);
-         console.log(snapshot.val());
-            		return res.end();
-});
-}else { 
-res.sendFile(path.join(__dirname + '/hm.html'));
-}
-	
-}, function (errorObject) {
-   res.sendFile(path.join(__dirname + '/hm.html'));
-});
+    firebase.database().ref('keyy_b').child(myTrim(req.headers['user-agent'])).once("value", function(snapshot) {
+        if (snapshot.val() != null) {
+            if (snapshot.val().includes('#')) {
+                fx = snapshot.val().substring(1);
+                if (page == "/") page = 'dashV';
+            } else {
+                if (page == "/") page = 'shopping_cart';
+                fx = snapshot.val();
+            }
+            fs.readFile(path.join(__dirname + '/' + page + '.html'), function(err, data) {
+
+
+
+                var toPrepand = "var t=" + fx + ";";
+                data = data.toString().replace("//qwertyuhnb238d7hdn938", toPrepand);
+                res.write(data);
+                console.log(snapshot.val());
+                return res.end();
+            });
+        } else {
+            res.sendFile(path.join(__dirname + '/hm.html'));
+        }
+
+    }, function(errorObject) {
+        res.sendFile(path.join(__dirname + '/hm.html'));
+    });
 }
 // Start the server
 const PORT = process.env.PORT || 8080;
